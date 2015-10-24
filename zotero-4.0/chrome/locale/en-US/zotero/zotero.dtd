@@ -41,6 +41,7 @@
 <!ENTITY zotero.tabs.attachments.label					"Attachments">
 <!ENTITY zotero.tabs.tags.label						"Tags">
 <!ENTITY zotero.tabs.related.label						"Related">
+<!ENTITY zotero.tabs.addition.label						"Additional Info">
 <!ENTITY zotero.notes.separate							"Edit in a separate window">
 
 <!ENTITY zotero.toolbar.duplicate.label				"Show Duplicates">

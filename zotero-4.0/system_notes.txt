@@ -1,0 +1,8 @@
+This txt file contains all discoveries made during research
+
+2015-10-24
+- xul files are markups for front-end components
+- form content  FRONT-END: itemPane.xul
+                BACK-END: itemPane.js
+- For every Zotero.debug([message]) , add a console.log([message]) afterwards for print statement debugging
+   -> make sure you have your JS, Security, Logging turned on inside your Firefox developer tools
