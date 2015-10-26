@@ -45,7 +45,7 @@ var ZoteroItemPane = new function() {
 		_notesList = document.getElementById('zotero-editpane-dynamic-notes');
 		_tagsBox = document.getElementById('zotero-editpane-tags');
 		_relatedBox = document.getElementById('zotero-editpane-related');
-		//_addition = document.getElementById('zotero.tabs.addition.label');
+		_addition = document.getElementById('zotero.tabs.addition.label');
 	}
 	
 	
@@ -72,6 +72,10 @@ var ZoteroItemPane = new function() {
 			case 3:
 				var box = _relatedBox;
 				break;
+
+			//case 4:
+			//	var box = _addition;
+			//	break;
 		}
 		
 		// Force blur() when clicking off a textbox to another item in middle

@@ -86,6 +86,10 @@
 						<tabpanel>
 							<seealsobox id="zotero-editpane-related" flex="1"/>
 						</tabpanel>
+
+						<tabpanel>
+							<zoteroitembox id="zotero-editpane-add-box" flex="1"/>
+						</tabpanel>
 					</tabpanels>
 			</tabbox>
 			
