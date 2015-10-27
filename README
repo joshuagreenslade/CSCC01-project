@@ -4,5 +4,11 @@ website: http://dancefaucet.com/news/Maged/CSCC01/
 Taskboard: http://scrumy.com/frog67ecliptic
 
 How to load the Zotero Pluging:
-Follow instructions on https://www.zotero.org/support/dev/source_code
-under the "Zotero for Firefox Git installations" header
+Step 1: Make sure makefile and zotero-4.0 are in the same directory
+Step 2: double click makefile and this will create a file "zotero@chnm.gmu.edu.xpi"
+Step 3: drag and drop the .xpi file into firefox 
+Note: if drag and drop does not work:
+a) Open firefox
+b) Ctrl-O
+c) browse to the extension and double click the extension (zotero@chnm.gmu.edu.xpi)
+d) install the extension
