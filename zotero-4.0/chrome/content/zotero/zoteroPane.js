@@ -48,6 +48,8 @@ var ZoteroPane = new function()
 	this.newCollection = newCollection;
 	this.newSearch = newSearch;
 	this.openAdvancedSearchWindow = openAdvancedSearchWindow;
+	this.openModifyTagsWindow = openModifyTagsWindow;
+	this.openAdditionalFieldsWindow = openAdditionalFieldsWindow;
 	this.toggleTagSelector = toggleTagSelector;
 	this.updateTagSelectorSize = updateTagSelectorSize;
 	this.getTagSelection = getTagSelection;
@@ -989,15 +991,56 @@ var ZoteroPane = new function()
 			win.focus();
 			return;
 		}
-		
+
 		var s = new Zotero.Search();
 		s.libraryID = this.getSelectedLibraryID();
 		s.addCondition('title', 'contains', '');
 		var io = {dataIn: {search: s}, dataOut: null};
 		window.openDialog('chrome://zotero/content/advancedSearch.xul', '', 'chrome,dialog=no,centerscreen', io);
 	}
-	
-	
+
+
+	function openModifyTagsWindow() {
+		var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+			.getService(Components.interfaces.nsIWindowMediator);
+		var enumerator = wm.getEnumerator('zotero:modify');
+		while (enumerator.hasMoreElements()) {
+			var win = enumerator.getNext();
+		}
+
+		if (win) {
+			win.focus();
+			return;
+		}
+
+		var s = new Zotero.Search();
+//		s.libraryID = this.getSelectedLibraryID();
+//		s.addCondition('title', 'contains', '');
+		var io = {dataIn: {search: s}, dataOut: null};
+		window.openDialog('chrome://zotero/content/modifyTags.xul', '', 'chrome,dialog=no,centerscreen', io);
+	}
+
+
+	function openAdditionalFieldsWindow() {
+		var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+			.getService(Components.interfaces.nsIWindowMediator);
+		var enumerator = wm.getEnumerator('zotero:modify');
+		while (enumerator.hasMoreElements()) {
+			var win = enumerator.getNext();
+		}
+
+		if (win) {
+			win.focus();
+			return;
+		}
+
+		var s = new Zotero.Search();
+//		s.libraryID = this.getSelectedLibraryID();
+//		s.addCondition('title', 'contains', '');
+		var io = {dataIn: {search: s}, dataOut: null};
+		window.openDialog('chrome://zotero/content/additionalFields.xul', '', 'chrome,dialog=no,centerscreen', io);
+	}
+
 	function toggleTagSelector(){
 		var tagSelector = document.getElementById('zotero-tag-selector');
 		
