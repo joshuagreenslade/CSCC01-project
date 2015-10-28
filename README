@@ -3,7 +3,7 @@ website: http://dancefaucet.com/news/Maged/CSCC01/
 
 Taskboard: http://scrumy.com/frog67ecliptic
 
-How to load the Zotero Pluging:
+How to load the Zotero Plugin:
 Step 1: Make sure you are inside the zotero-4.0 directory
 Step 2: zip all files and change extension to .xpi
 Step 3: drag and drop the .xpi file into firefox 
