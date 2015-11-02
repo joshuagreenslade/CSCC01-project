@@ -1,33 +1,37 @@
 /**
  * Created by Noah on 10/31/2015.
  */
-Zotero.AddField = {
-    DB: null,
-    init: function () {
-        // Connect to (and create, if necessary) helloworld.sqlite in the Zotero directory
-        console.log("connecting to helloworld...");
-        this.DB = new Zotero.DBConnection('helloworld');
+var ZoteroAdditionalFields = new function() {
+    this.DB = new Zotero.DBConnection('customfield');
+	var ZoteroPane = Components.classes["@mozilla.org/appshell/window-mediator;1"] .getService(Components.interfaces.nsIWindowMediator).getMostRecentWindow("navigator:browser").ZoteroPane;
+	if (!this.DB.tableExists('itemField')) {
+		this.DB.query("CREATE TABLE itemField (itemID INTEGER,fieldName TEXT, label TEXT)");
+	}
+	console.log("connecting to customfield...");
+	//this.DB = new Zotero.DBConnection('zotero');
 
-        if (!this.DB.tableExists('customFields')) {
-            this.DB.query("CREATE TABLE customFields (itemId INT, fieldKey TEXT, fieldValue TEXT)");
-            //this.DB.query("INSERT INTO changes VALUES (0)");
-        }
-        console.log("connecting to zotero...");
-        this.DB = new Zotero.DBConnection('zotero');
-
-        console.log("found items: " + this.DB.query("SELECT itemID FROM items"));
-        console.log("found?");
-    },
-
-    add: function() {
+	console.log("found items: " + this.DB.query("SELECT itemID FROM itemField"));
+	console.log("found?");
+ 
+ 
+    this.add = function() {
         console.log("trying to add...");
-        this.DB = new Zotero.DBConnection('helloworld');
-        //console.log("adding entry to helloworld....")
+        // TODO: change 'field' to field name from user
+		// TODO: change 'values' to values from user
+		
+		var sql = "INSERT INTO itemField VALUES (?,?,?)";
+		//get selected item from pane, insert data
+		var selected_items = ZoteroPane.getSelectedItems();
+		var item = selected_items[0];
+		if (item != null) {
+			this.DB.query(sql, [item.id, 'field', 'values']);
+		}
 
-    },
+	}
 
-    remove: function(){
+    this.remove = function(){
         console.log("tryig to remove...");
+        
     }
 };
 
