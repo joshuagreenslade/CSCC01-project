@@ -116,3 +116,7 @@ Zotero.HelloWorldZotero = {
 
 // Initialize the utility
 window.addEventListener('load', function(e) { Zotero.HelloWorldZotero.init(); }, false);
+
+
+
+

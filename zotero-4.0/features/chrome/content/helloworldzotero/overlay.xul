@@ -4,36 +4,17 @@
 
 <overlay id="helloworldzotero-overlay"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-	
-	<stringbundleset id="stringbundleset">
-		<stringbundle id="hello-world-zotero-strings"
-			src="chrome://helloworldzotero/locale/hello.properties"/>
-	</stringbundleset>
-
-	<!--<toolbar id="zotero-toolbar">
-		<button insertbefore="zotero-collections-toolbar" hidden="false" label="&helloworldzotero.name;" oncommand="Zotero.HelloWorldZotero.swag()"/>
-	</toolbar>
-
-	<tabpanels id="zotero-view-item">
-		<button insertbefore="zotero-collections-toolbar" hidden="false" label="&helloworldzotero.name;" oncommand="Zotero.HelloWorldZotero.()"/>
+<tabpanels id="zotero-view-item">
+	<button insertbefore="zotero-collections-toolbar" hidden="false" label="&helloworldzotero.name;" oncommand="Zotero.HelloWorldZotero.init();"/>
 	</tabpanels>-->
-
-	<vbox id="zotero-items-pane">
-		<button
-				insertafter="zotero-items-column-title"
-				id="zotero-items-column-extra" hidden="false"
-				label="moar" oncommand="Zotero.HelloWorldZotero.swag()"/>
-	</vbox>
 
 	<menupopup id="zotero-tb-actions-popup">
 		<!-- Make sure the menu separator for utilities is visible -->
 		<menuseparator id="zotero-tb-actions-plugins-separator" hidden="false"/>
-		<menuitem insertbefore="zotero-tb-actions-separator" label="&helloworldzotero.name;"
-			oncommand="Zotero.HelloWorldZotero.swag()"/>
+		<menuitem insertbefore="zotero-tb-actions-separator" label="&helloworldzotero.name;" onclick="Zotero.AddField.add();"/>
 	</menupopup>
 	
 	<!-- Include the main extension logic -->
 	<script src="chrome://zotero/content/include.js"/>
 	<script src="chrome://helloworldzotero/content/include.js" type="application/javascript;version=1.8"/>
 </overlay>
-+

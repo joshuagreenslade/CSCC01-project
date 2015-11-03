@@ -11,3 +11,8 @@ if (!Zotero.AddField) {
 		.getService(Components.interfaces.mozIJSSubScriptLoader);
 	loader.loadSubScript("chrome://helloworldzotero/content/addfield.js");
 }
+
+var Zotero = Components.classes["@zotero.org/Zotero;1"]
+		.getService(Components.interfaces.nsISupports)
+		.wrappedJSObject;
+

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/"?>
+<?xml-stylesheet href="chrome://zotero/skin/zotero.css" type="text/css"?>
+<?xml-stylesheet href="chrome://zotero/skin/overlay.css" type="text/css"?>
+<?xml-stylesheet href="chrome://zotero-platform/content/overlay.css"?>
+
+<!DOCTYPE window [
+        <!ENTITY % zoteroDTD SYSTEM "chrome://zotero/locale/zotero.dtd">
+        %zoteroDTD;
+        ]>
+
+<window
+        id="zotero-additional-fields-dialog"
+        title="Additional Fields"        
+	  orient="vertical"
+        persist="screenX screenY width height"
+        onload="ZoteroAdditionalFields.onLoad()"
+        onunload="ZoteroAdditionalFields.onUnload()"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        windowtype="zotero:fields">
+
+    <script src="include.js"/>
+    <script src="addfield.js"/>
+     
+    <vbox id="zotero-fields-box-container" flex="1">
+        <vbox id="zotero-fields-box-controls">
+            <vbox>
+                <textbox id="field" placeholder="Enter a field name"/>
+                <textbox id="value" placeholder="Enter the value"/>
+            </vbox>
+
+            <hbox id="zotero-field-buttons">
+                <button label="Add Field" oncommand="close()"/>
+                <button label="Delete Field"/> <!--oncommand="ZoteroAdditionalFields.deleteField()"/-->
+            </hbox>
+        </vbox>
+    </vbox>
+
+</window>
