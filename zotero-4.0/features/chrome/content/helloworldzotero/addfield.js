@@ -3,7 +3,15 @@
  */
 Zotero.AddField = new function() {
 	var ZoteroPane = Components.classes["@mozilla.org/appshell/window-mediator;1"] .getService(Components.interfaces.nsIWindowMediator).getMostRecentWindow("navigator:browser").ZoteroPane;
- 	
+
+	this.addField = addField;
+	this.deleteField = deleteField;
+	this.onLoad = onLoad;
+	this.onUnload = onUnload;
+
+	var field;
+	var value;
+
 	this.init = function () {
 	    this.DB = new Zotero.DBConnection('customfield');
 	   
@@ -16,6 +24,20 @@ Zotero.AddField = new function() {
 		console.log("found items: " + this.DB.query("SELECT itemID FROM itemField"));
 		console.log("found?");
 	}
+
+
+	function onLoad() {
+
+	}
+
+	function onUnload() {
+
+	}
+
+
+	function deleteField() {
+
+	}
  
      this.add = function() {
     
@@ -23,28 +45,39 @@ Zotero.AddField = new function() {
         // TODO: change 'field' to field name from user
 		// TODO: change 'values' to values from user
     
-		var sql = "INSERT INTO itemField VALUES (?,?,?)";
+
 		//get selected item from pane, insert data
-		var selected_items = ZoteroPane.getSelectedItems();
-		var item = selected_items[0];
+		var item = ZoteroPane.getSelectedItems()[0];
 		
 		if (item == null) {
 			window.alert('select a item first');
 		} else {
-			var field; 
-	    	var values;
-	    	window.openDialog('chrome://helloworldzotero/content/additionalFields.xul', '', 'chrome,dialog=no,centerscreen', field, values);
-	    	
-			this.DB.query(sql, [item.id, 'field', 'values']);
+	    	window.openDialog('chrome://helloworldzotero/content/additionalFields.xul', '', 'chrome,dialog=no,centerscreen', field, value);
     	}
 	}
 
-    this.remove = function(){
+	function addField() {
+		var sql = "INSERT INTO itemField VALUES (?,?,?)";
+
+		field = document.getElementById('field');
+		value = document.getElementById('value');
+
+		var item = ZoteroPane.getSelectedItems()[0];
+		var fields = field.value;
+		var values = value.value;
+
+		console.log("Field: " + fields + "Value: " + values);
+		this.DB.query(sql, [item.id, fields, values]);
+		window.close();
+	}
+
+
+	this.remove = function(){
         console.log("tryig to remove...");
         
     }
-    
-    
+
+
   
 };
 
