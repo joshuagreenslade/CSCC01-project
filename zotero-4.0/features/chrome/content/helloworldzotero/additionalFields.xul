@@ -31,7 +31,7 @@
 
             <hbox id="zotero-field-buttons">
                 <button label="Add Field" oncommand="Zotero.AddField.addfield()"/>
-                <button label="Delete Field"/> <!--oncommand="ZoteroAdditionalFields.deleteField()"/-->
+                <button label="Delete Field" oncommand="Zotero.AddField.deletefield()"/>
             </hbox>
         </vbox>
     </vbox>

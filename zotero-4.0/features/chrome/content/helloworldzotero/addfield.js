@@ -1,28 +1,25 @@
-/**
- * Created by Noah on 10/31/2015.
- */
 Zotero.AddField = {
 	//var ZoteroPane = Components.classes["@mozilla.org/appshell/window-mediator;1"] .getService(Components.interfaces.nsIWindowMediator).getMostRecentWindow("navigator:browser").ZoteroPane;
 
 	settings:{
 		DB: null,
 		fieldKey : "",
-		fieldValue: ""
-
+		fieldValue: "",
+		//fieldTable: "customField"
 	},
 
 	init : function () {
 		console.log("inside init");
 		fieldKey = this.fieldKey;
 		fieldValue = this.fieldValue;
+//		fieldTable = this.fieldTable;
 	    this.DB = new Zotero.DBConnection('anyaPls');
-		//ZoteroPane = Components.classes["@mozilla.org/appshell/window-mediator;1"] .getService(Components.interfaces.nsIWindowMediator).getMostRecentWindow("navigator:browser").ZoteroPane;
 
-		if (!this.DB.tableExists('customField')) {
-			this.DB.query("CREATE TABLE customField (itemID INTEGER, fieldName TEXT, fieldValue TEXT)");
+		if (!this.DB.tableExists("customField")) {
+			this.DB.query("CREATE TABLE " + "customField" + " (itemID INTEGER, fieldName TEXT, fieldValue TEXT)");
 		}
 
-		console.log("found items: " + this.DB.query("SELECT fieldName FROM customField"));
+		console.log("found items: " + this.DB.query("SELECT fieldName FROM " + "customField"));
 		console.log("found?");
 	},
 
@@ -37,7 +34,20 @@ Zotero.AddField = {
 
 
 	deleteField : function() {
-		var remove_sql = "REMOVE FROM customField VALUES (?,?,?)";
+
+		var sql_delete = "INSERT FROM " + "customField" + " WHERE itemID=";
+
+		field = document.getElementById('field');
+		//value = document.getElementById('value');
+
+		var ZoteroPane = Components.classes["@mozilla.org/appshell/window-mediator;1"] .getService(Components.interfaces.nsIWindowMediator).getMostRecentWindow("navigator:browser").ZoteroPane;
+		var item = ZoteroPane.getSelectedItems()[0];
+		var fields = field.value;
+		//var values = value.value;
+
+		console.log("deleting Field: " + fields);
+		this.DB.query(sql_delete + item.id + " AND fieldName=" + fields);
+		window.close();
 	},
  
 	add: function() {
@@ -51,7 +61,7 @@ Zotero.AddField = {
 		var item = ZoteroPane.getSelectedItems()[0];
 		
 		if (item == null) {
-			window.alert('select a item first');
+			window.alert('select an item first');
 		} else {
 	    	window.openDialog('chrome://helloworldzotero/content/additionalFields.xul', '', 'chrome,dialog=no,centerscreen', this.fieldKey, this.fieldValue);
 
@@ -59,8 +69,8 @@ Zotero.AddField = {
 	},
 
 	addfield: function() {
-		console.log("inside addfield");
-		var sql = "INSERT INTO customField VALUES (?,?,?)";
+		console.log("inside addfield...");
+		var sql_add = "INSERT INTO " + "customField" + " VALUES (?,?,?)";
 
 		field = document.getElementById('field');
 		value = document.getElementById('value');
@@ -71,7 +81,7 @@ Zotero.AddField = {
 		var values = value.value;
 
 		console.log("Field: " + fields + " Value: " + values);
-		this.DB.query(sql, [item.id, fields, values]);
+		this.DB.query(sql_add, [item.id, fields, values]);
 		window.close();
 	}/*
 
