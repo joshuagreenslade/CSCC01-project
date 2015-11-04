@@ -14,7 +14,7 @@
         title="Additional Fields"        
 	  orient="vertical"
         persist="screenX screenY width height"
-        onload="Zotero.AddField.onLoad()"
+        onload="Zotero.AddField.init()"
         onunload="Zotero.AddField.onUnload()"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
         windowtype="zotero:fields">
@@ -30,7 +30,7 @@
             </vbox>
 
             <hbox id="zotero-field-buttons">
-                <button label="Add Field" oncommand="Zotero.AddField.addField()"/>
+                <button label="Add Field" oncommand="Zotero.AddField.addfield()"/>
                 <button label="Delete Field"/> <!--oncommand="ZoteroAdditionalFields.deleteField()"/-->
             </hbox>
         </vbox>
