@@ -33,9 +33,9 @@ Zotero.AddField = {
 	},
 
 
-	deleteField : function() {
+	deletefield : function() {
 
-		var sql_delete = "INSERT FROM " + "customField" + " WHERE itemID=";
+		var sql_delete = "DELETE FROM " + "customField" + " WHERE itemID=";
 
 		field = document.getElementById('field');
 		//value = document.getElementById('value');
@@ -46,8 +46,8 @@ Zotero.AddField = {
 		//var values = value.value;
 
 		console.log("deleting Field: " + fields);
-		this.DB.query(sql_delete + item.id + " AND fieldName=" + fields);
-		window.close();
+		this.DB.query(sql_delete + item.id + " AND fieldName='" + fields + "'");
+//		window.close();
 	},
  
 	add: function() {
@@ -63,8 +63,7 @@ Zotero.AddField = {
 		if (item == null) {
 			window.alert('select an item first');
 		} else {
-	    	window.openDialog('chrome://helloworldzotero/content/additionalFields.xul', '', 'chrome,dialog=no,centerscreen', this.fieldKey, this.fieldValue);
-
+	    window.openDialog('chrome://helloworldzotero/content/additionalFields.xul', '', 'chrome,dialog=no,centerscreen');//, this.fieldKey, this.fieldValue);
     	}
 	},
 
@@ -72,8 +71,8 @@ Zotero.AddField = {
 		console.log("inside addfield...");
 		var sql_add = "INSERT INTO " + "customField" + " VALUES (?,?,?)";
 
-		field = document.getElementById('field');
-		value = document.getElementById('value');
+		var field = document.getElementById('field');
+		var value = document.getElementById('value');
 
 		var ZoteroPane = Components.classes["@mozilla.org/appshell/window-mediator;1"] .getService(Components.interfaces.nsIWindowMediator).getMostRecentWindow("navigator:browser").ZoteroPane;
 		var item = ZoteroPane.getSelectedItems()[0];
@@ -82,7 +81,7 @@ Zotero.AddField = {
 
 		console.log("Field: " + fields + " Value: " + values);
 		this.DB.query(sql_add, [item.id, fields, values]);
-		window.close();
+//		window.close();
 	}/*
 
 	this.remove = function(){
