@@ -4,15 +4,14 @@
 
 <overlay id="helloworldzotero-overlay"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-<tabpanels id="zotero-view-item">
-	<button insertbefore="zotero-collections-toolbar" hidden="false" label="&helloworldzotero.name;" oncommand="Zotero.HelloWorldZotero.init();"/>
-	</tabpanels>-->
 
-	<menupopup id="zotero-tb-actions-popup">
-		<!-- Make sure the menu separator for utilities is visible -->
-		<menuseparator id="zotero-tb-actions-plugins-separator" hidden="false"/>
-		<menuitem insertbefore="zotero-tb-actions-separator" label="&helloworldzotero.name;" onclick="Zotero.AddField.add();"/>
+	<menupopup id="zotero-itemmenu">
+		<menuseparator hidden="false"/>
+		<menuitem id="custom-field" label="Custom Form" oncommand= "Zotero.AnyaPls.customField()"/>
 	</menupopup>
+
+	<!--Can remove-->
+
 	
 	<!-- Include the main extension logic -->
 	<script src="chrome://zotero/content/include.js"/>
