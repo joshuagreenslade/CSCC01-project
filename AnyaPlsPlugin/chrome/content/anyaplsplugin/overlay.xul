@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://anyaplsplugin/skin/overlay.css" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://anyaplsplugin/locale/hello.dtd">
+
+<overlay id="helloworldzotero-overlay"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<menupopup id="zotero-itemmenu">
+		<menuseparator hidden="false"/>
+		<menuitem id="custom-field" label="Custom Form" oncommand= "Zotero.AnyaPls.customField()"/>
+	</menupopup>
+
+	<!--Can remove-->
+
+	
+	<!-- Include the main extension logic -->
+	<script src="chrome://zotero/content/include.js"/>
+	<script src="chrome://anyaplsplugin/content/include.js" type="application/javascript;version=1.8"/>
+</overlay>

@@ -1,0 +1,5 @@
+content	anyaplsplugin				        chrome/content/anyaplsplugin/
+locale	anyaplsplugin	        en-US		chrome/locale/en-US/anyaplsplugin/
+skin	anyaplsplugin	        default		chrome/skin/default/anyaplsplugin/
+
+overlay	chrome://zotero/content/zoteroPane.xul	chrome://anyaplsplugin/content/overlay.xul
