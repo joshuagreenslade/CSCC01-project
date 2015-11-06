@@ -39,15 +39,14 @@ Zotero_AnyaPls_CustomForm.modify = function() {
 
 Zotero_AnyaPls_CustomForm.delete = function() {
 
-    //this.DB = new Zotero.DBConnection('anyaPls');
-    var sql_delete = "DELETE FROM customField WHERE itemID=? AND fieldName=?";
     var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
     var items = ZoteroPane.getSelectedItems();
-    var field = document.getElementById('field');
-    var value = document.getElementById('value');
+    var field = document.getElementById('field').value;
+    var value = document.getElementById('value').value;
+    var sql_delete = "DELETE FROM customField WHERE itemID=? AND fieldName=? AND fieldValue=?";
 
     for (var i = 0; i<items.length; i++) {
-        Zotero.AnyaPls.DB.query(sql_delete, [items[i].id, field.value]);
+        Zotero.AnyaPls.DB.query(sql_delete, [items[i].id, field, value]);
     }
 
     window.close();
