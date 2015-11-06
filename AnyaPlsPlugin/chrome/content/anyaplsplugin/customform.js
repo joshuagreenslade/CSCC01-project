@@ -38,10 +38,17 @@ Zotero_AnyaPls_CustomForm.modify = function() {
 };
 
 Zotero_AnyaPls_CustomForm.delete = function() {
-    //use this sql
-    var sql_delete = "DELETE FROM customField WHERE itemID=? AND fieldName=?";
 
-    //Can remove window.close() if only want to close window when click OK.
-    //use  Zotero.AnyaPls.DB.query(sql_delete, itemID, field);
+    var ZoteroPane = Components.classes["@mozilla.org/appshell/window-mediator;1"] .getService(Components.interfaces.nsIWindowMediator).getMostRecentWindow("navigator:browser").ZoteroPane;
+    var item = ZoteroPane.getSelectedItems()[0];
+
+    var field = document.getElementById('field');
+    var value = document.getElementById('value');
+
+    var sql_delete = "DELETE FROM " + "customField" + " WHERE itemID=" + item.id + " AND fieldName='" + field + "' AND fieldValue='" + value + "'";
+
+    console.log("deleting Field: " + fields);
+    this.DB.query(sql_delete);
+
     window.close();
 };
