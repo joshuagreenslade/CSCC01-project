@@ -39,18 +39,16 @@ Zotero_AnyaPls_CustomForm.modify = function() {
 
 Zotero_AnyaPls_CustomForm.delete = function() {
 
-    this.DB = new Zotero.DBConnection('anyaPls');
-
-    var ZoteroPane = Components.classes["@mozilla.org/appshell/window-mediator;1"] .getService(Components.interfaces.nsIWindowMediator).getMostRecentWindow("navigator:browser").ZoteroPane;
-    var item = ZoteroPane.getSelectedItems()[0];
-
+    //this.DB = new Zotero.DBConnection('anyaPls');
+    var sql_delete = "DELETE FROM customField WHERE itemID=? AND fieldName=?";
+    var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
+    var items = ZoteroPane.getSelectedItems();
     var field = document.getElementById('field');
     var value = document.getElementById('value');
 
-    var sql_delete = "DELETE FROM " + "customField" + " WHERE itemID=" + item.id + " AND fieldName='" + field + "' AND fieldValue='" + value + "'";
-
-    console.log("deleting Field: " + fields);
-    this.DB.query(sql_delete);
+    for (var i = 0; i<items.length; i++) {
+        Zotero.AnyaPls.DB.query(sql_delete, [items[i].id, field.value]);
+    }
 
     window.close();
 };
