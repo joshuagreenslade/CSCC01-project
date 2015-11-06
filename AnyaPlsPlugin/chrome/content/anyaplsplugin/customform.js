@@ -39,6 +39,8 @@ Zotero_AnyaPls_CustomForm.modify = function() {
 
 Zotero_AnyaPls_CustomForm.delete = function() {
 
+    this.DB = new Zotero.DBConnection('anyaPls');
+
     var ZoteroPane = Components.classes["@mozilla.org/appshell/window-mediator;1"] .getService(Components.interfaces.nsIWindowMediator).getMostRecentWindow("navigator:browser").ZoteroPane;
     var item = ZoteroPane.getSelectedItems()[0];
 
