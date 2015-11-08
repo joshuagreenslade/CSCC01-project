@@ -38,7 +38,7 @@ Zotero_AnyaPls_CustomForm.modify = function() {
     var items = ZoteroPane.getSelectedItems();
     var field = document.getElementById('field').value;
     var value = document.getElementById('value').value;
-    var sql_modify = "UPDATE customField SET fieldName=? WHERE itemID=? AND fieldName=?";
+    var sql_modify = "UPDATE customField SET fieldValue=? WHERE itemID=? AND fieldName=?";
     for (var i = 0; i<items.length; i++) {
         Zotero.AnyaPls.DB.query(sql_modify, [value, items[i].id, field]);
     }
