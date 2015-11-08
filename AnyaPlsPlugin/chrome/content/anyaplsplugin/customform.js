@@ -34,6 +34,16 @@ Zotero_AnyaPls_CustomForm.add = function() {
 Zotero_AnyaPls_CustomForm.modify = function() {
 
     //Can remove window.close() if only want to close window when click OK.
+    var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
+    var items = ZoteroPane.getSelectedItems();
+    var field = document.getElementById('field').value;
+    var value = document.getElementById('value').value;
+    var sql_modify = "UPDATE customField SET fieldName=? WHERE itemID=? AND fieldName=?";
+    for (var i = 0; i<items.length; i++) {
+        Zotero.AnyaPls.DB.query(sql_modify, [value, items[i].id, field]);
+    }
+    //Currently, it only modify fields that's been added
+    alert("Field have modified");
     window.close();
 };
 
