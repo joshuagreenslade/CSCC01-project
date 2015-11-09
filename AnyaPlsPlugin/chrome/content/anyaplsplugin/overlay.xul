@@ -12,6 +12,22 @@
 
 	<!--Can remove-->
 
+    <zoteroitembox id="zotero-editpane-item-box">
+        <scrollbox id="item-box">
+            <xul:box class="box-inherit scrollbox-innerbox" flex="1">
+                <grid flex="1">
+                    <rows id="dynamic-fields">
+                        <row>
+                            <label fieldname="test" value="test">
+                            </label>
+                            <label fieldname="title" flex="1" ztabindex="1" class="zotero-clicky" contextmenu="zotero-field-transform-menu">test</label>
+                        </row>
+                    </rows>
+                </grid>
+            </xul:box>
+        </scrollbox>
+    </zoteroitembox>
+
 	
 	<!-- Include the main extension logic -->
 	<script src="chrome://zotero/content/include.js"/>
