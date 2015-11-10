@@ -15,7 +15,7 @@
 		<div>
 			<button insterafter="zotero-tags-splitter" style="width: 25%;">swag</button>
 		</div>
-	</vbox>
+	</vbox>	
 	
 	<!-- Include the main extension logic -->
 	<script src="chrome://zotero/content/include.js"/>
