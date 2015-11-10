@@ -28,6 +28,8 @@
                 <button type="delete" label="Delete" oncommand="return Zotero_AnyaPls_CustomForm.delete();"/>
             </hbox>
         </vbox>
+
+        <listbox id="field-display-box" onclick="Zotero_AnyaPls_CustomForm.selectField();"/>
     </vbox>
 
 </dialog>
