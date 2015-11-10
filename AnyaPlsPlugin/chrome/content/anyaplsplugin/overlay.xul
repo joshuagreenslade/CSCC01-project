@@ -9,6 +9,13 @@
 		<menuseparator hidden="false"/>
 		<menuitem id="custom-field" label="Custom Form" oncommand= "Zotero.AnyaPls.customField()"/>
 	</menupopup>
+
+	<!--Can remove-->
+	<vbox id="zotero-collections-pane">
+		<div>
+			<button insterafter="zotero-tags-splitter" style="width: 25%;">swag</button>
+		</div>
+	</vbox>
 	
 	<!-- Include the main extension logic -->
 	<script src="chrome://zotero/content/include.js"/>
