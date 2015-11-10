@@ -55,8 +55,6 @@
 					<tab label="&zotero.tabs.notes.label;"/>
 					<tab label="&zotero.tabs.tags.label;"/>
 					<tab label="&zotero.tabs.related.label;"/>
-					<tab label="&zotero.tabs.addition.label;"/>
-					<!--<tab label="&zotero.tabs.dickaids.label;"/>-->
 				</tabs>
 					<tabpanels id="zotero-view-item" flex="1">
 						<tabpanel>
@@ -85,10 +83,6 @@
 						
 						<tabpanel>
 							<seealsobox id="zotero-editpane-related" flex="1"/>
-						</tabpanel>
-
-						<tabpanel>
-							<zoteroitembox id="zotero-editpane-add-box" flex="1"/>
 						</tabpanel>
 					</tabpanels>
 			</tabbox>

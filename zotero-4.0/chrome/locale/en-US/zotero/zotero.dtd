@@ -9,9 +9,6 @@
 <!ENTITY zotero.general.refresh								"Refresh">
 <!ENTITY zotero.general.saveAs								"Save As…">
 
-<!ENTITY zotero.modifyTags.merge                               "Merge Selected">
-<!ENTITY zotero.modifyTags.delete                               "Delete Selected">
-
 <!ENTITY zotero.errorReport.title							"Zotero Error Report">
 <!ENTITY zotero.errorReport.unrelatedMessages				"This may include messages unrelated to Zotero.">
 <!ENTITY zotero.errorReport.submissionInProgress			"Please wait while the error report is submitted.">
@@ -44,7 +41,6 @@
 <!ENTITY zotero.tabs.attachments.label					"Attachments">
 <!ENTITY zotero.tabs.tags.label						"Tags">
 <!ENTITY zotero.tabs.related.label						"Related">
-<!ENTITY zotero.tabs.addition.label						"Additional Info">
 <!ENTITY zotero.notes.separate							"Edit in a separate window">
 
 <!ENTITY zotero.toolbar.duplicate.label				"Show Duplicates">

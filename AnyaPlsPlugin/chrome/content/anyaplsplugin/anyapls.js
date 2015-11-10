@@ -30,10 +30,18 @@ Zotero.AnyaPls = {
         var items = ZoteroPane.getSelectedItems();
 
         if (items[0] != null) {
-            //window.alert("item has been selected");
-            window.openDialog("chrome://anyaplsplugin/content/customform.xul", "", "chrome, dialog=0, modal, centerscreen");
+
+            //stop the window from opening if the user selected a note or attachement
+            var open_window = 1;
+            for(var i = 0; i < items.length; i++) {
+                if(items[i].isNote() || items[i].isAttachment()) {
+                    open_window = 0;
+                }
+            }
+            if(open_window) {
+                window.openDialog("chrome://anyaplsplugin/content/customform.xul", "", "chrome, dialog=0, modal, centerscreen");
+            }
         } else {
-            window.alert("item has not been selected");
             return false;
         }
     },
