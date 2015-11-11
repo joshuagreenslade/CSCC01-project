@@ -46,6 +46,19 @@ Zotero.AnyaPls = {
         }
     },
 
+
+    displayCustomField: function() {
+        var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
+        var item = ZoteroPane.getSelectedItems()[0];
+
+        if((item != null) && (!item.isNote()) && (!item.isAttachment())) {
+            window.openDialog("chrome://anyaplsplugin/content/displayCustomFields.xul", "", "chrome, dialog=0, modal, centerscreen");
+        }
+        else {
+            return false;
+        }
+    },
+
     batchEditing: function() {
 
     }
