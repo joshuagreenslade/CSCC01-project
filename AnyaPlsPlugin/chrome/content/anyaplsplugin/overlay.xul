@@ -5,19 +5,19 @@
 <overlay id="helloworldzotero-overlay"
 		 xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-	<!--for opening the customform window-->
 	<menupopup id="zotero-itemmenu">
 		<menuseparator hidden="false"/>
 		<menuitem id="custom-field" label="Custom Form" oncommand= "Zotero.AnyaPls.customField()"/>
-		<menuitem id="display-custom-fields" label="Display Custom Fields" oncommand="Zotero.AnyaPls.displayCustomField()"/>
 	</menupopup>
 
+	<!--Can remove-->
 	<vbox id="zotero-collections-pane">
 		<div>
 			<button insterafter="zotero-tags-splitter" style="width: 25%;" oncommand="Zotero.AnyaPls.batchEditing()">batch tag edit</button>
 		</div>
 	</vbox>
-
+	<!-- Need something here to check which item is selected from the ZoteroPane and call function Zotero.AnyaPls.displayField(item) -->
+	<!-- Where item is the item that is been selected -->
 	<!-- Include the main extension logic -->
 	<script src="chrome://zotero/content/include.js"/>
 	<script src="chrome://anyaplsplugin/content/include.js" type="application/javascript;version=1.8"/>

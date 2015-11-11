@@ -30,7 +30,9 @@ Zotero.AnyaPls = {
         var items = ZoteroPane.getSelectedItems();
 
         if (items[0] != null) {
-
+            //TODO: need to click on the items to trigger the function Zotero.AnyaPls.displayField(items[0])
+            //Currently, its display when clicking on customField.....
+            Zotero.AnyaPls.displayField(items[0]);
             //stop the window from opening if the user selected a note or attachement
             var open_window = 1;
             for(var i = 0; i < items.length; i++) {
@@ -42,19 +44,6 @@ Zotero.AnyaPls = {
                 window.openDialog("chrome://anyaplsplugin/content/customform.xul", "", "chrome, dialog=0, modal, centerscreen");
             }
         } else {
-            return false;
-        }
-    },
-
-
-    displayCustomField: function() {
-        var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
-        var item = ZoteroPane.getSelectedItems()[0];
-
-        if((item != null) && (!item.isNote()) && (!item.isAttachment())) {
-            window.openDialog("chrome://anyaplsplugin/content/displayCustomFields.xul", "", "chrome, dialog=0, modal, centerscreen");
-        }
-        else {
             return false;
         }
     },
@@ -71,6 +60,30 @@ Zotero.AnyaPls = {
             window.alert("item has not been selected");
             return false;
         }
+    },
+
+    displayField: function(item) {
+
+        var itemBox = document.getElementById('dynamic-fields');
+        alert("IT should display fields now, after cliking ok");
+        var sql = "SELECT * FROM customField WHERE itemID=?"
+        var itemField = this.DB.query(sql, [item.id]);
+        for (var i = 0; i < itemField.length; i++) {
+            var flabel = document.createElement('label');
+            flabel.className = 'fieldNames';
+            var field = itemField[i].fieldName;
+            flabel.setAttribute('value', field);
+            var vlabel = document.createElement('label');
+            vlabel.className = "fieldValue";
+            var value = itemField[i].fieldValue;
+            vlabel.textContent = value;
+            var row = document.createElement('row');
+            row.appendChild(flabel);
+            row.appendChild(vlabel);
+            itemBox.appendChild(row);
+        }
+    }
 
 };
+
 
