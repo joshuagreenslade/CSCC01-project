@@ -15,12 +15,12 @@ d) install the extension
 
 How to use AnyaPlsZotero Plugin:
 Currently, AnyaplsZotero plugin supports the following feature
-1) Custom Form Builder
-2) Custom Form Output (Coming Soon)
-3) Batch Editing Tag (Coming Soon)
+1) Custom Field Builder
+2) Batch Editing Tag (Coming Soon)
+3) Custom Form Output (Coming Soon)
 4) Auto Change Detection (Coming soon)
 
-1. Custom Form Bulder: 
+1. Custom Field Bulder: 
 To use AnuaPlsZotero custom form buidler, make sure you have installed the
 AnyaPlsZotero plugin. Once installed, select one or more item in
 Zotero, right click and choose "Custom Form" to open custom form
