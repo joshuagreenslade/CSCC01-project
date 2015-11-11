@@ -14,7 +14,7 @@ Zotero.AnyaPls = {
         }
     },
 
-    getZoteroPane: function() {
+    getZoteroPane: function () {
         var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
             .getService(Components.interfaces.nsIWindowMediator);
         var enumerator = wm.getEnumerator("navigator:browser");
@@ -25,7 +25,7 @@ Zotero.AnyaPls = {
         }
     },
 
-    customField: function(){
+    customField: function () {
         var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
         var items = ZoteroPane.getSelectedItems();
 
@@ -33,12 +33,12 @@ Zotero.AnyaPls = {
 
             //stop the window from opening if the user selected a note or attachement
             var open_window = 1;
-            for(var i = 0; i < items.length; i++) {
-                if(items[i].isNote() || items[i].isAttachment()) {
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].isNote() || items[i].isAttachment()) {
                     open_window = 0;
                 }
             }
-            if(open_window) {
+            if (open_window) {
                 window.openDialog("chrome://anyaplsplugin/content/customform.xul", "", "chrome, dialog=0, modal, centerscreen");
             }
         } else {
@@ -47,11 +47,11 @@ Zotero.AnyaPls = {
     },
 
 
-    displayCustomField: function() {
+    displayCustomField: function () {
         var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
         var item = ZoteroPane.getSelectedItems()[0];
 
-        if((item != null) && (!item.isNote()) && (!item.isAttachment())) {
+        if ((item != null) && (!item.isNote()) && (!item.isAttachment())) {
             window.openDialog("chrome://anyaplsplugin/content/displayCustomFields.xul", "", "chrome, dialog=0, modal, centerscreen");
         }
         else {
@@ -59,7 +59,7 @@ Zotero.AnyaPls = {
         }
     },
 
-    batchEditing: function() {
+    batchEditing: function () {
 
         var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
         var items = ZoteroPane.getSelectedItems();
@@ -71,6 +71,5 @@ Zotero.AnyaPls = {
             window.alert("item has not been selected");
             return false;
         }
-
+    }
 };
-
