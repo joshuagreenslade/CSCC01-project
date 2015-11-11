@@ -14,7 +14,7 @@
 
 	<vbox id="zotero-collections-pane">
 		<div>
-			<button insterafter="zotero-tags-splitter" style="width: 25%;">swag</button>
+			<button insterafter="zotero-tags-splitter" style="width: 25%;" oncommand="Zotero.AnyaPls.batchEditing()">batch tag edit</button>
 		</div>
 	</vbox>
 
