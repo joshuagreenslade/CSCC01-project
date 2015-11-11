@@ -26,8 +26,8 @@
 var ZoteroItemPane = new function() {
 	this.onLoad = onLoad;
 	
-	var _lastItem, _itemBox, _notesLabel, _notesButton, _notesList, _tagsBox, _relatedBox, _addition;
-	console.log("inside onload");
+	var _lastItem, _itemBox, _notesLabel, _notesButton, _notesList, _tagsBox, _relatedBox;
+	
 	function onLoad()
 	{
 		if (!Zotero || !Zotero.initialized) {
@@ -45,7 +45,6 @@ var ZoteroItemPane = new function() {
 		_notesList = document.getElementById('zotero-editpane-dynamic-notes');
 		_tagsBox = document.getElementById('zotero-editpane-tags');
 		_relatedBox = document.getElementById('zotero-editpane-related');
-		_addition = document.getElementById('zotero.tabs.addition.label');
 	}
 	
 	
@@ -58,7 +57,6 @@ var ZoteroItemPane = new function() {
 		}
 		
 		Zotero.debug('Viewing item in pane ' + index);
-		console.log('Viewing item in pane ' + index);
 		
 		switch (index) {
 			case 0:
@@ -72,10 +70,6 @@ var ZoteroItemPane = new function() {
 			case 3:
 				var box = _relatedBox;
 				break;
-
-			//case 4:
-			//	var box = _addition;
-			//	break;
 		}
 		
 		// Force blur() when clicking off a textbox to another item in middle
