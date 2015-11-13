@@ -62,6 +62,7 @@ Zotero_AnyaPls_BatchEdit.delete = function() {
     //a window that confirms that the user wants to delete the selected tags
     var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
         .getService(Components.interfaces.nsIPromptService);
+    
     var confirmed = promptService.confirm(window, "Delete Tags", message);
 
     if (confirmed) {
