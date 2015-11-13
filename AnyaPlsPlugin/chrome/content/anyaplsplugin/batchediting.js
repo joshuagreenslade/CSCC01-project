@@ -11,6 +11,17 @@ logger = function(msg) {
 };
 
 Zotero_AnyaPls_BatchEdit.init = function () {
+    var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
+    var items = ZoteroPane.getSelectedItems();
+
+    //hide the add tag stuff if an item was not selected
+    if (items.length) {
+        document.getElementById('add-tags').setAttribute("hidden", "false");
+    }
+    else {
+        document.getElementById('add-tags').setAttribute("hidden", "true");
+    }
+
     updateDisplay();
 };
 
@@ -30,6 +41,21 @@ updateDisplay = function() {
     for (var id in all_tags) {
         displayBox.appendItem(all_tags[id].name, id);
     }
+
+};
+
+Zotero_AnyaPls_BatchEdit.add = function() {
+    var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
+    var items = ZoteroPane.getSelectedItems();
+    var tag = document.getElementById('tag-name');
+
+    //add the new tag to each of the selected items
+    for (var i = 0; i < items.length; i++) {
+        items[i].addTag(tag.value, "0")
+    }
+
+    tag.value = '';
+    updateDisplay();
 
 };
 
