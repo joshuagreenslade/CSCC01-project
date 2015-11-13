@@ -60,16 +60,6 @@ Zotero.AnyaPls = {
     },
 
     batchEditing: function () {
-
-        var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
-        var items = ZoteroPane.getSelectedItems();
-
-        if (items[0] != null) {
-            //window.alert("item has been selected");
             window.openDialog("chrome://anyaplsplugin/content/batchediting.xul", "", "chrome, dialog=0, modal, centerscreen");
-        } else {
-            window.alert("item has not been selected");
-            return false;
-        }
     }
 };

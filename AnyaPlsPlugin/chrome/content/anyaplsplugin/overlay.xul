@@ -12,9 +12,10 @@
 		<menuitem id="display-custom-fields" label="Display Custom Fields" oncommand="Zotero.AnyaPls.displayCustomField()"/>
 	</menupopup>
 
+	<!--for the batch tag editing window-->
 	<vbox id="zotero-collections-pane">
 		<div>
-			<button insterafter="zotero-tags-splitter" style="width: 25%;" oncommand="Zotero.AnyaPls.batchEditing()">batch tag edit</button>
+			<button label="Edit Tags" insterafter="zotero-tags-splitter" style="width: 25%;" oncommand="Zotero.AnyaPls.batchEditing()"/>
 		</div>
 	</vbox>
 
