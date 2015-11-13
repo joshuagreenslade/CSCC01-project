@@ -25,7 +25,7 @@
             </hbox>
         </vbox>
 
-        <listbox id="tag-display-box" seltype="multiple" onclick="Zotero_AnyaPls_BatchEdit.selectTag();"/>
+        <listbox id="tag-display-box" seltype="multiple"/>
     </vbox>
 
 </dialog>
