@@ -19,7 +19,14 @@
 		</div>
 	</vbox>
 
-	<!-- Include the main extension logic -->
+	<toolbarbutton id="view-settings-menu">
+		<menupopup id="view-settings-popup">
+			<menuseparator insertafter="display-all-tags"/>
+			<menutitem id="showbatchsearch" label="Show Batch Search" type="checkbox"/>
+		</menupopup>
+	</toolbarbutton>
+
+		<!-- Include the main extension logic -->
 	<script src="chrome://zotero/content/include.js"/>
 	<script src="chrome://anyaplsplugin/content/include.js" type="application/javascript;version=1.8"/>
 </overlay>
