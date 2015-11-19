@@ -8,7 +8,7 @@
 	<!--for opening the customform window-->
 	<menupopup id="zotero-itemmenu">
 		<menuseparator hidden="false"/>
-		<menuitem id="custom-field" label="Custom Form" oncommand= "Zotero.AnyaPls.customField()"/>
+		<menuitem id="custom-field" label="Customize Additional Fields..." oncommand= "Zotero.AnyaPls.customField()"/>
 		<menuitem id="display-custom-fields" label="Display Custom Fields" oncommand="Zotero.AnyaPls.displayCustomField()"/>
 	</menupopup>
 
