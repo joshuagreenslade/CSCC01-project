@@ -71,5 +71,25 @@ Zotero.AnyaPls = {
             window.alert("item has not been selected");
             return false;
         }
+    },
+
+    checkboxClicked: function () {
+
+        //maybe only do this if tags and fields or everything is selected
+
+        var checkbox = document.getElementById('custom-field-search-checkbox')
+        var searchbar = document.getElementById('zotero-tb-search')
+
+        if(checkbox.hasAttribute('checked')) {
+            searchbar.setAttribute('oncommand', 'ZoteroPane_Local.search(), Zotero.AnyaPls.searchCustomFields()');
+        }
+        else {
+            searchbar.setAttribute('oncommand', 'ZoteroPane_Local.search()');
+        }
+    },
+
+    searchCustomFields: function () {
+
+       
     }
 };

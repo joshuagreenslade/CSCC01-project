@@ -12,6 +12,11 @@
 		<menuitem id="display-custom-fields" label="Display Custom Fields" oncommand="Zotero.AnyaPls.displayCustomField()"/>
 	</menupopup>
 
+	<hbox id="zotero-items-toolbar">
+		<checkbox id="custom-field-search-checkbox" label="Include Custom Fields In Search" insertafter="zotero-tb-search" checked="false" oncommand="Zotero.AnyaPls.checkboxClicked()"/>
+	</hbox>
+
+
 	<vbox id="zotero-collections-pane">
 		<div>
 			<button insterafter="zotero-tags-splitter" style="width: 25%;" oncommand="Zotero.AnyaPls.batchEditing()">batch tag edit</button>
