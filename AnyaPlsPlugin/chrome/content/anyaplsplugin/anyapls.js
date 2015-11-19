@@ -90,6 +90,44 @@ Zotero.AnyaPls = {
 
     searchCustomFields: function () {
 
-       
+        //search the custom field table in the database for an entry with the fieldName or fieldValue thats contains the value specified in the search bar
+        var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
+        var input = document.getElementById('zotero-tb-search').value;
+        var sql_search = "SELECT Distinct itemID FROM customField WHERE fieldName LIKE '%" + input + "%' OR fieldValue LIKE '%" + input + "%'";
+        var results = this.DB.query(sql_search);
+
+        //get the items that correspond to the selected itemID's selected from the customField table
+        var items = [];
+        for(var i=0; i < results.length; i++) {
+            items.push(Zotero.Items.get(results[i].itemID));
+        }
+        console.log(items);
+
+        //display the items in the zotero display window
+
+        //figure out how to display the items that were selected
+        /*
+         var itemGroup = {
+         //            ref: {
+         //                libraryID: _libraryID
+         //            },
+         isSearchMode: function() { return true; },
+         getItems: function (items) {
+         return items;
+         },
+         isLibrary: function () { return false; },
+         isCollection: function () { return false; },
+         isSearch: function () { return true; },
+         isShare: function () { return false; },
+         isTrash: function () { return false; }
+         }
+
+         if (this.itemsView) {
+         this.itemsView.unregister();
+         }
+
+         this.itemsView = new Zotero.ItemTreeView(itemGroup, false);
+         document.getElementById('zotero-items-tree').view = this.itemsView;
+         */
     }
 };
