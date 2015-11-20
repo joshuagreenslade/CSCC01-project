@@ -19,12 +19,10 @@
 		</div>
 	</vbox>
 
-	<toolbarbutton id="view-settings-menu">
-		<menupopup id="view-settings-popup">
-			<menuseparator insertafter="display-all-tags"/>
-			<menutitem id="showbatchsearch" label="Show Batch Search" type="checkbox"/>
-		</menupopup>
-	</toolbarbutton>
+	<menupopup id="zotero-itemmenu">
+		<menuseparator hidden="false"/>
+		<menuitem id="custom-citation" label="Add Custom Citation..." oncommand= "Zotero.AnyaPls.customCitation()"/>
+	</menupopup>
 
 		<!-- Include the main extension logic -->
 	<script src="chrome://zotero/content/include.js"/>
