@@ -3,6 +3,7 @@
 <?xml-stylesheet href="chrome://zotero/skin/zotero.css" type="text/css"?>
 <?xml-stylesheet href="chrome://zotero/skin/overlay.css" type="text/css"?>
 <?xml-stylesheet href="chrome://zotero-platform/content/overlay.css"?>
+<!DOCTYPE window SYSTEM "chrome://anyaplsplugin/locale/hello.dtd">
 
 <dialog
         id="zotero-custom-fields"
@@ -29,7 +30,7 @@
             </hbox>
         </vbox>
 
-        <listbox id="field-display-box" onclick="Zotero_AnyaPls_BatchEdit   .selectField();"/>
+        <listbox id="field-display-box" onclick="Zotero_AnyaPls_BatchEdit.selectField();"/>
     </vbox>
 
 </dialog>

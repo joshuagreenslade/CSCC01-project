@@ -3,6 +3,7 @@
 <?xml-stylesheet href="chrome://zotero/skin/zotero.css" type="text/css"?>
 <?xml-stylesheet href="chrome://zotero/skin/overlay.css" type="text/css"?>
 <?xml-stylesheet href="chrome://zotero-platform/content/overlay.css"?>
+<!DOCTYPE window SYSTEM "chrome://anyaplsplugin/locale/hello.dtd">
 
 <dialog
         id="zotero-custom-fields"
@@ -13,7 +14,9 @@
 
 
     <script src="customform.js"/>
+    <script src="displayCustomFields.js"/>
     <script src="chrome://zotero/content/include.js"/>
+
 
     <vbox id="zotero-fields-box-container" flex="1">
         <vbox id="zotero-fields-box-controls">
@@ -29,7 +32,15 @@
             </hbox>
         </vbox>
 
-        <listbox id="field-display-box" onclick="Zotero_AnyaPls_CustomForm.selectField();"/>
+        //TODO: use display box as current field
+        <tabs>
+            <!--id="zotero-display-custom-fields"-->
+            <!--title="Display Custom Form"-->
+            <!--persist="screenX screenY width height"-->
+            <!--onload="Zotero_AnyaPls_DisplayCustomForm.init()"-->
+            <listbox id="field-display-box" onclick="Zotero_AnyaPls_CustomForm.selectField();"/>
+            <listbox id="display-box"  onclick="Zotero_AnyaPls_CustomForm.selectField();"/>
+        </tabs>
     </vbox>
 
 </dialog>
