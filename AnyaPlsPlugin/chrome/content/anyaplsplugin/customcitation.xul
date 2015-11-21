@@ -8,6 +8,8 @@
         id="zotero-batch-tag-edit"
         title="Custom Citation"
         persist="screenX screenY width height"
+        width="500"
+        height="500"
         onload="Zotero_AnyaPls_CustomCitation.init()"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
@@ -49,18 +51,32 @@
     </tabbox>-->
 
     <vbox id="zotero-citation-editing-container" flex="1">
+
         <vbox id="zotero-citation-editing-controls">
-
             <vbox id="add-citation" flex="1">
-                <textbox id="citation-name" placeholder="Enter a new citation name"/>
-                <button label="Add Citation" oncommand="return Zotero_AnyaPls_CustomCitation.add();"/>
+                <button label="Select Item" oncommand="return Zotero_AnyaPls_CustomCitation.updatelist();"/>
+                <menulist id="item-select" hidden="true">
+                    <menupopup>
+                    </menupopup>
+                </menulist>
             </vbox>
-
             <hbox flex="1">
+                <button label="Add" oncommand="return Zotero_AnyaPls_CustomCitation.add();"/>
                 <button label="Delete" oncommand="return Zotero_AnyaPls_CustomCitation.delete();"/>
             </hbox>
         </vbox>
-        <listbox id="tag-display-box" flex="1" seltype="multiple"/>
+        <textbox id="citation-textbox"/>
+        <listbox id="citation-display-box" flex="1" seltype="multiple">
+            <listhead>
+                <listheader label="field" width="200"/>
+                <listheader label="Current Value" width="400"/>
+            </listhead>
+            <listcols>
+                <listcol>
+
+                </listcol>
+            </listcols>
+        </listbox>
     </vbox>
 
 </dialog>
