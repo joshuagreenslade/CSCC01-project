@@ -32,7 +32,6 @@
             </hbox>
         </vbox>
 
-        //TODO: use display box as current field
         <tabs>
             <!--id="zotero-display-custom-fields"-->
             <!--title="Display Custom Form"-->
