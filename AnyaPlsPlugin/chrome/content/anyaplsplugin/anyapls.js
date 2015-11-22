@@ -96,11 +96,10 @@ Zotero.AnyaPls = {
         //reset the searchbar and erase the search results
         searchbar.value = '';
         Zotero.AnyaPls.searchCustomFields();
+        ZoteroPane.itemsView._itemGroup = oldItemGroup;
+        ZoteroPane_Local.search();
 
         if(checkbox.hasAttribute('checked')) {
-            ZoteroPane.itemsView._itemGroup = oldItemGroup;
-            console.log(oldItemGroup);
-            console.log(ZoteroPane.itemsView._itemGroup);
 
             //change the oncommand value of the search box to go to searchCustomFields function, and remove the
             //onkeypress and oninput fields because they caused errors
@@ -110,8 +109,7 @@ Zotero.AnyaPls = {
         }
         else {
 
-            //reset the itemGroup to the original value (this resolved errors)
-            ZoteroPane.itemsView._itemGroup = oldItemGroup;
+            //reset the oncommand value to the original command
             searchbar.setAttribute('oncommand', 'ZoteroPane_Local.search()');
         }
     },
@@ -124,6 +122,14 @@ Zotero.AnyaPls = {
         //search the custom field table in the database for an entry with the fieldName or fieldValue that contains
         //the value specified in the search bar
         var input = document.getElementById('zotero-tb-search').value;
+
+        //if there is no input just do a normal search
+        if(input == '') {
+            ZoteroPane.itemsView._itemGroup = oldItemGroup;
+            ZoteroPane_Local.search();
+            return;
+        }
+
         var sql_search = "SELECT Distinct itemID FROM customField WHERE fieldName LIKE '%" + input + "%' OR fieldValue LIKE '%" + input + "%'";
         var results = this.DB.query(sql_search);
 
