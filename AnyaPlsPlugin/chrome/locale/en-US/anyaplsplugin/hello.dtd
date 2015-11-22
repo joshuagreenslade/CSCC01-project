@@ -1,3 +1,8 @@
-<!ENTITY helloworldzotero.name			"Custom Form">
+<!ENTITY anyapls.customForm			    "Custom Form">
 <!ENTITY anyapls.customizeFields		"Customize Additional Fields...">
 <!ENTITY anyapls.displayCustomFields	"Display Custom Fields">
+<!ENTITY anyapls.add	                "Add">
+<!ENTITY anyapls.delete	                "Delete">
+<!ENTITY anyapls.modify	                "Modify">
+<!ENTITY anyapls.enterField	            "Enter a field name">
+<!ENTITY anyapls.enterValue	            "Enter the value">

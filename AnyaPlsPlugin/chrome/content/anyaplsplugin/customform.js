@@ -27,20 +27,20 @@ updateDisplay = function() {
     }
 
     //column indicator/separator
-    displayBox.appendItem("\n----Current item's fields----");
+    displayBox.appendItem("\n------Current item's fields------");
 
     var result = Zotero.AnyaPls.DB.query(sql_search_with_item);
 
     //if column has no fields, display (none)
     if(!result.length)
-        displayBox.appendItem("(none)");
+        displayBox.appendItem("(insert new fields)");
     else
         for(var i = 0; i < result.length; i++) {
             displayBox.appendItem(result[i].fieldName + ": " + result[i].fieldValue);
         }
 
     //column indicator/separator
-    displayBox.appendItem("----Other fields----");
+    displayBox.appendItem("------Other custom fields------");
     //put each custom field into the listbox
     //this updates the listbox to show the current list of custom fields
     var result = Zotero.AnyaPls.DB.query(sql_search);

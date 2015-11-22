@@ -6,7 +6,7 @@
 
 <dialog
         id="zotero-display-custom-fields"
-        title="Display Custom Form"
+        title="&anyapls.customForm;"
         persist="screenX screenY width height"
         onload="Zotero_AnyaPls_DisplayCustomForm.init()"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">

@@ -7,7 +7,7 @@
 
 <dialog
         id="zotero-custom-fields"
-        title="Custom Form"
+        title="&anyapls.customForm;"
         persist="screenX screenY width height"
         onload="Zotero_AnyaPls_BatchEdit.init()"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
@@ -19,14 +19,14 @@
     <vbox id="zotero-fields-box-container" flex="1">
         <vbox id="zotero-fields-box-controls">
             <vbox>
-                <textbox id="field" placeholder="Enter a field name"/>
-                <textbox id="value" placeholder="Enter the value"/>
+                <textbox id="field" placeholder="&anyapls.enterField;"/>
+                <textbox id="value" placeholder="&anyapls.enterValue;"/>
             </vbox>
 
             <hbox>
-                <button type="add" label="Add" oncommand="return Zotero_AnyaPls_BatchEdit.add();"/>
-                <button type="modify" label="Modify" oncommand="return Zotero_AnyaPls_BatchEdit.modify();"/>
-                <button type="delete" label="Delete" oncommand="return Zotero_AnyaPls_BatchEdit.delete();"/>
+                <button type="add" label="&anyapls.add;" oncommand="return Zotero_AnyaPls_BatchEdit.add();"/>
+                <button type="modify" label="&anyapls.modify;" oncommand="return Zotero_AnyaPls_BatchEdit.modify();"/>
+                <button type="delete" label="&anyapls.delete;" oncommand="return Zotero_AnyaPls_BatchEdit.delete();"/>
             </hbox>
         </vbox>
 
