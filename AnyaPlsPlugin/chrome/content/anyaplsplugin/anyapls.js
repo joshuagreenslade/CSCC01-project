@@ -82,6 +82,11 @@ Zotero.AnyaPls = {
         var checkbox = document.getElementById('custom-field-search-checkbox');
         var searchbar = document.getElementById('zotero-tb-search');
 
+        //if it is in fullscreen dont let the user search custom fields because it crashed the program
+        if(ZoteroPane.isFullScreen()) {
+            return;
+        }
+
         //save the original ZoteroPane.itemsView._itemGroup (this solved an error)
         if(!initialized){
             oldItemGroup = ZoteroPane.itemsView._itemGroup;
@@ -93,6 +98,9 @@ Zotero.AnyaPls = {
         Zotero.AnyaPls.searchCustomFields();
 
         if(checkbox.hasAttribute('checked')) {
+            ZoteroPane.itemsView._itemGroup = oldItemGroup;
+            console.log(oldItemGroup);
+            console.log(ZoteroPane.itemsView._itemGroup);
 
             //change the oncommand value of the search box to go to searchCustomFields function, and remove the
             //onkeypress and oninput fields because they caused errors
