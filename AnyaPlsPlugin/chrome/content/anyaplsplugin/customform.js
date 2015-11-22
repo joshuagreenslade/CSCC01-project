@@ -27,7 +27,7 @@ updateDisplay = function() {
     }
 
     //column indicator/separator
-    displayBox.appendItem("\n------Current item's fields------");
+    displayBox.appendItem("\n<----Current item's fields---->");
 
     var result = Zotero.AnyaPls.DB.query(sql_search_with_item);
 
@@ -40,7 +40,7 @@ updateDisplay = function() {
         }
 
     //column indicator/separator
-    displayBox.appendItem("------Other custom fields------");
+    displayBox.appendItem("<----Other custom fields---->");
     //put each custom field into the listbox
     //this updates the listbox to show the current list of custom fields
     var result = Zotero.AnyaPls.DB.query(sql_search);

@@ -3,10 +3,11 @@
 <?xml-stylesheet href="chrome://zotero/skin/zotero.css" type="text/css"?>
 <?xml-stylesheet href="chrome://zotero/skin/overlay.css" type="text/css"?>
 <?xml-stylesheet href="chrome://zotero-platform/content/overlay.css"?>
+<!DOCTYPE window SYSTEM "chrome://anyaplsplugin/locale/hello.dtd">
 
 <dialog
         id="zotero-display-custom-fields"
-        title="&anyapls.customForm;"
+        title="&anyapls.displayCustomFields;"
         persist="screenX screenY width height"
         onload="Zotero_AnyaPls_DisplayCustomForm.init()"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
