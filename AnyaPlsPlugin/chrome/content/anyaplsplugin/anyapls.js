@@ -5,6 +5,10 @@
  * Every time a new feature is added, please create a new "featurename.js" and "featurename.xul"
  */
 
+//global variables needed for the custom field search
+var initialized = false;
+var oldItemGroup;
+
 Zotero.AnyaPls = {
     DB: null,
     init: function () {
@@ -75,81 +79,73 @@ Zotero.AnyaPls = {
 
     checkboxClicked: function () {
 
-        //maybe only do this if tags and fields or everything is selected
-
         var checkbox = document.getElementById('custom-field-search-checkbox');
         var searchbar = document.getElementById('zotero-tb-search');
 
+        //save the original ZoteroPane.itemsView._itemGroup (this solved an error)
+        if(!initialized){
+            oldItemGroup = ZoteroPane.itemsView._itemGroup;
+            initialized = true;
+        }
+
         if(checkbox.hasAttribute('checked')) {
+
+            //change the oncommand value of the search box to go to searchCustomFields function, and remove the
+            //onkeypress and oninput fields because they caused errors
+            searchbar.setAttribute('onkeypress', '');
+            searchbar.setAttribute('oninput', '');
             searchbar.setAttribute('oncommand', 'Zotero.AnyaPls.searchCustomFields()');
-            console.log("checked");
         }
         else {
+
+            //reset the itemGroup to the original value (this resolved errors)
+            ZoteroPane.itemsView._itemGroup = oldItemGroup;
             searchbar.setAttribute('oncommand', 'ZoteroPane_Local.search()');
-            console.log("unchecked");
         }
+
+        //reset the searchbar and erase the search results
+        searchbar.value = '';
+        Zotero.AnyaPls.searchCustomFields();
     },
 
-    searchCustomFields: function () {
 
-        //search the custom field table in the database for an entry with the fieldName or fieldValue thats contains the value specified in the search bar
+    searchCustomFields: function () {
         var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
+        var ids = [];
+
+        //search the custom field table in the database for an entry with the fieldName or fieldValue that contains
+        //the value specified in the search bar
         var input = document.getElementById('zotero-tb-search').value;
         var sql_search = "SELECT Distinct itemID FROM customField WHERE fieldName LIKE '%" + input + "%' OR fieldValue LIKE '%" + input + "%'";
         var results = this.DB.query(sql_search);
 
-        //get the items that correspond to the selected itemID's selected from the customField table
-        var ids = [];
+        //put the ids in a single array
         for(var i=0; i < results.length; i++) {
-            console.log(i);
             ids.push(results[i].itemID);
         }
-        console.log(ids);
-
-        //display the items in the zotero display window
-
-        //figure out how to display the items that were selected
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//first figure out how to add the normal search results to the database searched results then figure out how to not crash it//
-//doesnt work on full screen at all                                                                                         //
-//                                                                                                                          //
-//if all else fails will have to open a window which displays the titles of the objects with the specified field            //
-//so maybe make a backup first                                                                                              //
-//          search custom fields button that opens a window where you enter text and in the window the title is displayed   //
-//          (not the tree thing because thats really hard) and possibly the field/value that was found in the database      //
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        //maybe use ZoteroPane.itemsView.setFilter('search', 's'), setFiter is in itemTreeView.js
-
-
-        //currently works but crashes with error
-        //"NS_ERROR_UNEXPECTED: Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsITreeSelection.select]"
-        //if you try to click on something
-        //after you search once for custom fields
-
-        //once you search a custom field you can nolonger click on something or do a normal search again
-        //once this function is run aleast once clicking items and normal search is no longer avaliable
 
         var _libraryID;
-        this.itemsView = false;
+        ZoteroPane.itemsView = false;
 
-         var itemGroup = {
+        //put the group of selected items into the itemGroup
+        var itemGroup = {
              ref: {
                  libraryID: _libraryID
              },
-        isSearchMode: function() { return true; },
-         getItems: function (items) { return Zotero.Items.get(ids); },
-         isLibrary: function () { return false; },
-        isCollection: function () { return false; },
-        isSearch: function () { return true; },
-        isShare: function () { return false; },
-        isTrash: function () { return false; }
+             isSearchMode: function() { return true; },
+             getItems: function () { return Zotero.Items.get(ids); },
+             isLibrary: function () { return false; },
+             isCollection: function () { return false; },
+             isSearch: function () { return true; },
+             isShare: function () { return false; },
+             isTrash: function () { return false; }
         }
-  //       if (this.itemsView) {
-  //           this.itemsView.unregister();
-  //       }
-         this.itemsView = new Zotero.ItemTreeView(itemGroup, false);
-         document.getElementById('zotero-items-tree').view = this.itemsView;
+
+        //refresh the itemView
+        if (ZoteroPane.itemsView) {
+         ZoteroPane.itemsView.unregister();
+        }
+        ZoteroPane.itemsView = new Zotero.ItemTreeView(itemGroup, false);
+        document.getElementById('zotero-items-tree').view = ZoteroPane.itemsView;
     }
 };
