@@ -13,7 +13,7 @@
 	</menupopup>
 
 	<hbox id="zotero-items-toolbar">
-		<checkbox id="custom-field-search-checkbox" label="Include Custom Fields In Search" insertafter="zotero-tb-search" checked="false" oncommand="Zotero.AnyaPls.checkboxClicked()"/>
+		<checkbox id="custom-field-search-checkbox" label="Search Custom Fields" insertafter="zotero-tb-search" checked="false" oncommand="Zotero.AnyaPls.checkboxClicked()"/>
 	</hbox>
 
 
