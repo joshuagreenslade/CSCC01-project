@@ -88,6 +88,10 @@ Zotero.AnyaPls = {
             initialized = true;
         }
 
+        //reset the searchbar and erase the search results
+        searchbar.value = '';
+        Zotero.AnyaPls.searchCustomFields();
+
         if(checkbox.hasAttribute('checked')) {
 
             //change the oncommand value of the search box to go to searchCustomFields function, and remove the
@@ -102,10 +106,6 @@ Zotero.AnyaPls = {
             ZoteroPane.itemsView._itemGroup = oldItemGroup;
             searchbar.setAttribute('oncommand', 'ZoteroPane_Local.search()');
         }
-
-        //reset the searchbar and erase the search results
-        searchbar.value = '';
-        Zotero.AnyaPls.searchCustomFields();
     },
 
 
