@@ -1,31 +1,36 @@
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [About Us](#about-us)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Custom Field Builder](#custom-field-builder)
+  - [Batch Editing Tag](#batch-editing-tag)
+  - [Custom Form Output](#custom-form-output)
+  - [Auto Change Detection](#auto-change-detection)
+  
+## About Us
 Project Planning, State of the Project, System Design is on the
 website: http://dancefaucet.com/news/Maged/CSCC01/
 Taskboard: http://scrumy.com/sparse25twaddle
-
-How to load AnyaPlsZotero Plugin:
+## Installation
 Step 1: Make sure you are inside the AnyaPlsPlugin folder
-Step 2: select all files inside the current directory, compress it to
-.zip and change extension to .xpi
-Step 3: drag and drop the .xpi file into firefox 
-Note: if drag and drop does not work:
-a) Open firefox
-b) Ctrl-O
-c) browse to the extension and double click the extension
-d) install the extension
+Step 2: select all files inside the current directory, compress it to .zip and change extension to .xpi
+Step 3: drag and drop the .xpi file into firefox
 
-How to use AnyaPlsZotero Plugin:
-Currently, AnyaplsZotero plugin supports the following feature
-1) Custom Field Builder
-2) Batch Editing Tag (Coming Soon)
-3) Custom Form Output (Coming Soon)
-4) Auto Change Detection (Coming soon)
-
-1. Custom Field Bulder: 
-To use AnuaPlsZotero custom form buidler, make sure you have installed the
+## Usage
+Currenrtly, AnyaPlsZotero plugin supports the followinf four features. Below are some examples of how to use each of them
+### Custom Field Builder
+To use AnyaPlsZotero custom form builder, make sure you have installed the
 AnyaPlsZotero plugin. Once installed, select one or more item in
-Zotero, right click and choose "Custom Form" to open custom form
+Zotero, right click and choose "Customize Additional Fields" to open custom form
 builder menu. You can Add new field to selected items, Modify existing
 field name and values and Delete field. 
+#### Example
+
+### Batch Editing Tag 
+### Custom Form Output
+### Auto Change Detection
 
 
 
