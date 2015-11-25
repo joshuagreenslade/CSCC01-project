@@ -3,10 +3,11 @@
 <?xml-stylesheet href="chrome://zotero/skin/zotero.css" type="text/css"?>
 <?xml-stylesheet href="chrome://zotero/skin/overlay.css" type="text/css"?>
 <?xml-stylesheet href="chrome://zotero-platform/content/overlay.css"?>
+<!DOCTYPE window SYSTEM "chrome://anyaplsplugin/locale/hello.dtd">
 
 <dialog
         id="zotero-batch-tag-edit"
-        title="Edit Tags"
+        title="&anyapls.customForm;"
         persist="screenX screenY width height"
         onload="Zotero_AnyaPls_BatchEdit.init()"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
@@ -15,38 +16,6 @@
     <script src="batchediting.js"/>
     <script src="chrome://zotero/content/include.js"/>
 
-    <!--<tabbox>
-        <tabs>
-            <tab label="Add"/>
-            <tab label="Edit"/>
-        </tabs>
-        <tabpanels>
-            <tabpanel id="addtab">
-                <vbox id="zotero-batch-tag-adding-container" flex="1">
-                    <vbox id="zotero-batch-tag-adding-controls">
-                        <hbox flex="1">
-                            <textbox id="tag-name" placeholder="Enter a new tag name"/>
-                            <button label="Add New Tag" oncommand="return Zotero_AnyaPls_BatchEdit.add();"/>
-                        </hbox>
-                    </vbox>
-                </vbox>
-            </tabpanel>
-            <tabpanel id="edittab">
-                <vbox id="zotero-batch-tag-editing-container" flex="1">
-                    <vbox id="zotero-batch-tag-editing-controls">
-                        <hbox flex="1">
-                            <button label="Merge" oncommand="return Zotero_AnyaPls_BatchEdit.merge();"/>
-                            <button label="Rename" oncommand="return Zotero_AnyaPls_BatchEdit.rename();"/>
-                            <button label="Delete" oncommand="return Zotero_AnyaPls_BatchEdit.delete();"/>
-                        </hbox>
-                    </vbox>
-
-                    <listbox id="tag-display-box" flex="1" seltype="multiple"/>
-                </vbox>
-
-            </tabpanel>
-        </tabpanels>
-    </tabbox>-->
 
   <vbox id="zotero-batch-tag-editing-container" flex="1">
         <vbox id="zotero-batch-tag-editing-controls">

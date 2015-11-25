@@ -8,8 +8,8 @@
 	<!--for opening the customform window-->
 	<menupopup id="zotero-itemmenu">
 		<menuseparator hidden="false"/>
-		<menuitem id="custom-field" label="Custom Form" oncommand= "Zotero.AnyaPls.customField()"/>
-		<menuitem id="display-custom-fields" label="Display Custom Fields" oncommand="Zotero.AnyaPls.displayCustomField()"/>
+		<menuitem id="custom-field" label="&anyapls.customizeFields;" oncommand= "Zotero.AnyaPls.customField()"/>
+		<menuitem id="display-custom-fields" label="&anyapls.displayCustomFields;" oncommand="Zotero.AnyaPls.displayCustomField()"/>
 	</menupopup>
 
 	<hbox id="zotero-items-toolbar">
@@ -22,6 +22,10 @@
 			<button label="Edit Tags" insterafter="zotero-tags-splitter" style="width: 25%;" oncommand="Zotero.AnyaPls.batchEditing()"/>
 		</div>
 	</vbox>
+	
+	<!-- display the fields under info tab -->
+	<tree id ="zotero-items-tree" onclick="Zotero.AnyaPls.itemView()"/>
+	<!-- Include the main extension logic -->
 
 	<menupopup id="zotero-itemmenu">
 		<menuseparator hidden="false"/>

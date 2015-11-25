@@ -62,7 +62,38 @@ Zotero.AnyaPls = {
             return false;
         }
     },
-
+    
+    itemView: function() {
+    	  var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
+        var item = ZoteroPane.getSelectedItems()[0];	
+        //TODO: fix the following code so that it won't display items that have already been displayed.
+        if ((item != null) && (!item.isNote()) && (!item.isAttachment())) {
+            var itemBox = document.getElementById('dynamic-fields');
+				//alert('aaa');
+				var sql = "SELECT * FROM customField WHERE itemID=?"
+				var itemField = this.DB.query(sql, [item.id]);
+				for (var i = 0; i < itemField.length; i++) {
+					var flabel = document.createElement('label');
+					flabel.className = 'fieldNames';
+					var field = itemField[i].fieldName;
+					flabel.setAttribute('value', field);
+					var vlabel = document.createElement('label');
+					vlabel.className = "fieldValue";
+					var value = itemField[i].fieldValue;
+					vlabel.textContent = value;
+					var row = document.createElement('row');
+					row.appendChild(flabel);
+					row.appendChild(vlabel);
+					itemBox.appendChild(row);
+				}
+            //return true;
+        } else {
+        	   return false;	
+        }
+        
+          	
+    },
+    
     batchEditing: function () {
         window.open("chrome://anyaplsplugin/content/batchediting.xul", "", "chrome, centerscreen");
     },

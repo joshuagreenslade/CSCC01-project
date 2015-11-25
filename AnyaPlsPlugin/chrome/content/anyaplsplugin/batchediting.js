@@ -1,6 +1,3 @@
-/**
- * Created by Maged on 2015-11-10.
- */
 
 Zotero_AnyaPls_BatchEdit = function () {};
 
@@ -65,10 +62,6 @@ Zotero_AnyaPls_BatchEdit.merge = function() {
 
 Zotero_AnyaPls_BatchEdit.rename = function() {
 
-    ////////////////////////////////////////////////////////////////////////////////////
-    //right now must close edit tags window for the new name of the tags to be updated//
-    ////////////////////////////////////////////////////////////////////////////////////
-
     var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
     var selected_tags = document.getElementById('tag-display-box').selectedItems;
 
@@ -100,11 +93,6 @@ Zotero_AnyaPls_BatchEdit.rename = function() {
         }
 
         if (selected_tags.length) {
-//            if (this.selection[oldName]) {
-//                var wasSelected = true;
-//                delete this.selection[oldName];
-//            }
-
             var promises = [];
             Zotero.DB.beginTransaction();
 
@@ -113,12 +101,7 @@ Zotero_AnyaPls_BatchEdit.rename = function() {
                 promises.push(Zotero.Tags.rename(selected_tags[i], newName.value));
             }
 
-//            if (wasSelected) {
-//                this.selection[newName.value] = true;
-//            }
             Zotero.DB.commitTransaction();
-//            Q.all(promises)
-//                .done();
         }
         // Colored tags don't need to exist, so in that case
         // just rename the color setting
@@ -127,11 +110,6 @@ Zotero_AnyaPls_BatchEdit.rename = function() {
             Zotero.Tags.getColor(this.libraryID, oldName)
                 .then(function (color) {
                     if (color) {
-//                        if (self.selection[oldName]) {
-//                            var wasSelected = true;
-//                            delete self.selection[oldName];
-//                        }
-
                         return Zotero.Tags.setColor(
                             self.libraryID, oldName, false
                         )
@@ -139,11 +117,6 @@ Zotero_AnyaPls_BatchEdit.rename = function() {
                                 return Zotero.Tags.setColor(
                                     self.libraryID, newName, color
                                 )
-//                                    .then(function () {
-//                                        if (wasSelected) {
-//                                            self.selection[newName.value] = true;
-//                                        }
-//                                    });
                             });
                     }
                     else {
