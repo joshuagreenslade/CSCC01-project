@@ -12,7 +12,7 @@
 ## About Us
 Project Planning, State of the Project, System Design is on the
 website: http://dancefaucet.com/news/Maged/CSCC01/
-Taskboard: http://scrumy.com/sparse25twaddle
+Taskboard: http://scrumy.com/sparse25twaddle, http://scrumy.com/booties25linguist#
 ## Installation
 Step 1: Make sure you are inside the AnyaPlsPlugin folder <br />
 Step 2: select all files inside the current directory, compress it to .zip and change extension to .xpi <br />
