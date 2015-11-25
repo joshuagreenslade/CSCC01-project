@@ -43,7 +43,7 @@ Zotero.AnyaPls = {
                 }
             }
             if (open_window) {
-                window.openDialog("chrome://anyaplsplugin/content/customform.xul", "", "chrome, dialog=0, modal, centerscreen");
+                window.open("chrome://anyaplsplugin/content/customform.xul", "", "chrome, centerscreen");
             }
         } else {
             return false;
@@ -56,7 +56,7 @@ Zotero.AnyaPls = {
         var item = ZoteroPane.getSelectedItems()[0];
 
         if ((item != null) && (!item.isNote()) && (!item.isAttachment())) {
-            window.openDialog("chrome://anyaplsplugin/content/displayCustomFields.xul", "", "chrome, dialog=0, modal, centerscreen");
+            window.open("chrome://anyaplsplugin/content/displayCustomFields.xul", "", "chrome, dialog=0, centerscreen");
         }
         else {
             return false;
@@ -64,17 +64,7 @@ Zotero.AnyaPls = {
     },
 
     batchEditing: function () {
-
-        var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
-        var items = ZoteroPane.getSelectedItems();
-
-        if (items[0] != null) {
-            //window.alert("item has been selected");
-            window.openDialog("chrome://anyaplsplugin/content/batchediting.xul", "", "chrome, dialog=0, modal, centerscreen");
-        } else {
-            window.alert("item has not been selected");
-            return false;
-        }
+        window.open("chrome://anyaplsplugin/content/batchediting.xul", "", "chrome, centerscreen");
     },
 
     checkboxClicked: function () {
