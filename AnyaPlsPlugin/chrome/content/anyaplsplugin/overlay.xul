@@ -12,6 +12,10 @@
 		<menuitem id="display-custom-fields" label="Display Custom Fields" oncommand="Zotero.AnyaPls.displayCustomField()"/>
 	</menupopup>
 
+	<hbox id="zotero-items-toolbar">
+		<checkbox id="custom-field-search-checkbox" label="Search Custom Fields" insertafter="zotero-tb-search" checked="false" oncommand="Zotero.AnyaPls.checkboxClicked()"/>
+	</hbox>
+
 	<!--for the batch tag editing window-->
 	<vbox id="zotero-collections-pane">
 		<div>
