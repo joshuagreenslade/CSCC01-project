@@ -108,10 +108,13 @@ Zotero_AnyaPls_CustomForm.add = function() {
     var sql_add = "INSERT INTO " + "customField" + " VALUES (?,?,?)";
     var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
     var items = ZoteroPane.getSelectedItems();
-
+	 if (!field.value.trim()) { //if field is null, space
+	 	return;
+	 }
+	 
     //Insert new field to all selected item
     for (var i = 0; i < items.length; i++) {
-        Zotero.AnyaPls.DB.query(sql_add, [items[i].id, field.value, value.value]);
+        Zotero.AnyaPls.DB.query(sql_add, [items[i].id, field.value.trim(), value.value.trim()]);
     }
 
     //reset the text boxes
