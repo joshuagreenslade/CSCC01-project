@@ -12,15 +12,17 @@
 		<menuitem id="display-custom-fields" label="&anyapls.displayCustomFields;" oncommand="Zotero.AnyaPls.displayCustomField()"/>
 	</menupopup>
 
+	<!--for the batch tag editing window-->
 	<vbox id="zotero-collections-pane">
 		<div>
-			<button insterafter="zotero-tags-splitter" style="width: 25%;" oncommand="Zotero.AnyaPls.batchEditing()">batch tag edit</button>
+			<button label="Edit Tags" insterafter="zotero-tags-splitter" style="width: 25%;" oncommand="Zotero.AnyaPls.batchEditing()"/>
 		</div>
 	</vbox>
 	
 	<!-- display the fields under info tab -->
 	<tree id ="zotero-items-tree" onclick="Zotero.AnyaPls.itemView()"/>
 	<!-- Include the main extension logic -->
+
 	<script src="chrome://zotero/content/include.js"/>
 	<script src="chrome://anyaplsplugin/content/include.js" type="application/javascript;version=1.8"/>
 </overlay>

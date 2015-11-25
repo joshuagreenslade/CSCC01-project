@@ -1,4 +1,5 @@
 <!ENTITY anyapls.customForm			    "Custom Form">
+<!ENTITY anyapls.batchEditTags			"Batch Tags Edit">
 <!ENTITY anyapls.customizeFields		"Customize Additional Fields...">
 <!ENTITY anyapls.displayCustomFields	"Display Custom Fields">
 <!ENTITY anyapls.add	                "Add">

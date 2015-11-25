@@ -6,31 +6,33 @@
 <!DOCTYPE window SYSTEM "chrome://anyaplsplugin/locale/hello.dtd">
 
 <dialog
-        id="zotero-custom-fields"
+        id="zotero-batch-tag-edit"
         title="&anyapls.customForm;"
         persist="screenX screenY width height"
         onload="Zotero_AnyaPls_BatchEdit.init()"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
 
-    <script src="customform.js"/>
+    <script src="batchediting.js"/>
     <script src="chrome://zotero/content/include.js"/>
 
-    <vbox id="zotero-fields-box-container" flex="1">
-        <vbox id="zotero-fields-box-controls">
-            <vbox>
-                <textbox id="field" placeholder="&anyapls.enterField;"/>
-                <textbox id="value" placeholder="&anyapls.enterValue;"/>
+
+  <vbox id="zotero-batch-tag-editing-container" flex="1">
+        <vbox id="zotero-batch-tag-editing-controls">
+
+            <vbox id="add-tags" flex="1">
+                <textbox id="tag-name" placeholder="Enter a new tag name"/>
+                <button label="Add New Tag" oncommand="return Zotero_AnyaPls_BatchEdit.add();"/>
             </vbox>
 
-            <hbox>
-                <button type="add" label="&anyapls.add;" oncommand="return Zotero_AnyaPls_BatchEdit.add();"/>
-                <button type="modify" label="&anyapls.modify;" oncommand="return Zotero_AnyaPls_BatchEdit.modify();"/>
-                <button type="delete" label="&anyapls.delete;" oncommand="return Zotero_AnyaPls_BatchEdit.delete();"/>
+            <hbox flex="1">
+                <button label="Merge" oncommand="return Zotero_AnyaPls_BatchEdit.merge();"/>
+                <button label="Rename" oncommand="return Zotero_AnyaPls_BatchEdit.rename();"/>
+                <button label="Delete" oncommand="return Zotero_AnyaPls_BatchEdit.delete();"/>
             </hbox>
         </vbox>
 
-        <listbox id="field-display-box" onclick="Zotero_AnyaPls_BatchEdit.selectField();"/>
+        <listbox id="tag-display-box" flex="1" seltype="multiple"/>
     </vbox>
 
 </dialog>
