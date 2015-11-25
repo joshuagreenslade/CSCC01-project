@@ -19,11 +19,11 @@ Step 2: select all files inside the current directory, compress it to .zip and c
 Step 3: drag and drop the .xpi file into firefox <br />
 
 ## Usage
-Currenrtly, AnyaPlsZotero plugin supports the following four features. Below are some examples of how to use each of them
+Currently, AnyaPlsZotero plugin supports the following four features. Below are some examples of how to use each of them
 ### Custom Field Builder
-To use AnyaPlsZotero custom form builder, make sure you have installed the
+To use AnyaPlsZotero custom field builder, make sure you have installed the
 AnyaPlsZotero plugin. Once installed, select one or more item in
-Zotero, right click and choose "Customize Additional Fields" to open custom form
+Zotero, right click and choose "Customize Additional Fields" to open custom field
 builder menu. You can Add new field to selected items, Modify existing
 field name and values and Delete field. 
 
