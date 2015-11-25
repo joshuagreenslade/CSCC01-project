@@ -32,14 +32,14 @@
             </hbox>
         </vbox>
 
-        <tabs>
+        <!--tabs-->
             <!--id="zotero-display-custom-fields"-->
             <!--title="Display Custom Form"-->
             <!--persist="screenX screenY width height"-->
             <!--onload="Zotero_AnyaPls_DisplayCustomForm.init()"-->
             <listbox id="field-display-box" onclick="Zotero_AnyaPls_CustomForm.selectField();"/>
-            <listbox id="display-box"  onclick="Zotero_AnyaPls_CustomForm.selectField();"/>
-        </tabs>
+            <!--listbox id="display-box"  onclick="Zotero_AnyaPls_CustomForm.selectField();"/-->
+        <!--/tabs-->
     </vbox>
 
 </dialog>
