@@ -17,39 +17,6 @@
     <script src="customCitation.js"/>
     <script src="chrome://zotero/content/include.js"/>
 
-    <!--<tabbox>
-        <tabs>
-            <tab label="Add"/>
-            <tab label="Edit"/>
-        </tabs>
-        <tabpanels>
-            <tabpanel id="addtab">
-                <vbox id="zotero-batch-tag-adding-container" flex="1">
-                    <vbox id="zotero-batch-tag-adding-controls">
-                        <hbox flex="1">
-                            <textbox id="tag-name" placeholder="Enter a new tag name"/>
-                            <button label="Add New Tag" oncommand="return Zotero_AnyaPls_BatchEdit.add();"/>
-                        </hbox>
-                    </vbox>
-                </vbox>
-            </tabpanel>
-            <tabpanel id="edittab">
-                <vbox id="zotero-batch-tag-editing-container" flex="1">
-                    <vbox id="zotero-batch-tag-editing-controls">
-                        <hbox flex="1">
-                            <button label="Merge" oncommand="return Zotero_AnyaPls_BatchEdit.merge();"/>
-                            <button label="Rename" oncommand="return Zotero_AnyaPls_BatchEdit.rename();"/>
-                            <button label="Delete" oncommand="return Zotero_AnyaPls_BatchEdit.delete();"/>
-                        </hbox>
-                    </vbox>
-
-                    <listbox id="tag-display-box" flex="1" seltype="multiple"/>
-                </vbox>
-
-            </tabpanel>
-        </tabpanels>
-    </tabbox>-->
-
     <vbox id="zotero-citation-editing-container" flex="1">
 
         <vbox id="zotero-citation-editing-controls">
@@ -62,21 +29,9 @@
             </vbox>
             <hbox flex="1">
                 <button label="Add" oncommand="return Zotero_AnyaPls_CustomCitation.add();"/>
-                <button label="Delete" oncommand="return Zotero_AnyaPls_CustomCitation.delete();"/>
             </hbox>
         </vbox>
         <textbox id="citation-textbox"/>
-        <listbox id="citation-display-box" flex="1" seltype="multiple">
-            <listhead>
-                <listheader label="field" width="200"/>
-                <listheader label="Current Value" width="400"/>
-            </listhead>
-            <listcols>
-                <listcol>
-
-                </listcol>
-            </listcols>
-        </listbox>
     </vbox>
 
 </dialog>
