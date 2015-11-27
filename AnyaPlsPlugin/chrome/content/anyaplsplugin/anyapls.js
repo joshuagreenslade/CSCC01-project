@@ -16,6 +16,10 @@ Zotero.AnyaPls = {
         if (!this.DB.tableExists("customField")) {
             this.DB.query("CREATE TABLE " + "customField" + " (itemID INTEGER, fieldName TEXT, fieldValue TEXT)");
         }
+
+        if (!this.DB.tableExists("customBib")) {
+            this.DB.query("CREATE TABLE " + "customBib" + " (name TEXT, bib TEXT)");
+        }
     },
 
     getZoteroPane: function () {
@@ -101,6 +105,14 @@ Zotero.AnyaPls = {
 
     customCitation: function() {
         window.open("chrome://anyaplsplugin/content/customcitation.xul", "", "chrome, centerscreen");
+    },
+
+
+    customBibliography: function() {
+        var item = Zotero.AnyaPls.getZoteroPane().getSelectedItems()[0];
+
+        if ((item != null) && (!item.isNote()) && (!item.isAttachment()))
+            window.open("chrome://anyaplsplugin/content/customBibliography.xul", "", "chrome, centerscreen");
     },
 
 

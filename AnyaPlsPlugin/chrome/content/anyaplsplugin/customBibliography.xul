@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/"?>
+<?xml-stylesheet href="chrome://zotero/skin/zotero.css" type="text/css"?>
+<?xml-stylesheet href="chrome://zotero/skin/overlay.css" type="text/css"?>
+<?xml-stylesheet href="chrome://zotero-platform/content/overlay.css"?>
+
+<dialog
+        id="zotero-custom-bibliography"
+        title="Custom Bibliography"
+        persist="screenX screenY width height"
+        width="500"
+        height="500"
+        onload="Zotero_AnyaPls_CustomBibliography.init()"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+
+    <script src="customBibliography.js"/>
+    <script src="chrome://zotero/content/include.js"/>
+
+    <vbox id="zotero-bibliography-editing-container" flex="1">
+
+        <vbox id="zotero-bibliography-editing-controls">
+            <vbox id="add-citation" flex="1">
+                <menulist id="item-select" label="Select a field to add" oncommand="Zotero_AnyaPls_CustomBibliography.add()">
+                    <menupopup>
+                    </menupopup>
+                </menulist>
+                <label id="instructions"/>
+            </vbox>
+        </vbox>
+        <textbox id="bibliography-textbox" multiline="true" flex="2"/>
+        <hbox>
+            <button id="save" label="Save Bibliograpghy as" oncommand="Zotero_AnyaPls_CustomBibliography.save();"/>
+            <button id="load" label="Load Bibliograpghy" oncommand="Zotero_AnyaPls_CustomBibliography.load();"/>
+            <button id="fill-in" label="Fill in Bibliography" oncommand="Zotero_AnyaPls_CustomBibliography.fillIn();"/>
+        </hbox>
+        <textbox id="name"/>
+
+    </vbox>
+
+</dialog>

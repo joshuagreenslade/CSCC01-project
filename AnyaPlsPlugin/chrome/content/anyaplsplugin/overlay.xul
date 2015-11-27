@@ -30,6 +30,8 @@
 	<menupopup id="zotero-itemmenu">
 		<menuseparator hidden="false"/>
 		<menuitem id="custom-citation" label="Add Custom Citation..." oncommand= "Zotero.AnyaPls.customCitation()"/>
+		<menuitem id="custom-bibliography" label="Custom Bibliography..." oncommand= "Zotero.AnyaPls.customBibliography()"/>
+
 	</menupopup>
 
 		<!-- Include the main extension logic -->
