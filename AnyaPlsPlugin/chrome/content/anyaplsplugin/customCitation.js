@@ -24,16 +24,19 @@ Zotero_AnyaPls_CustomCitation.init = function () {
     else {
         document.getElementById('add-citation').setAttribute("hidden", "true");
     }
-
-    updateDisplay();
+    Zotero_AnyaPls_CustomCitation.updatelist();
 };
 
 
 Zotero_AnyaPls_CustomCitation.updatelist = function(){
 
+    //reset the list
+    document.getElementById("item-select").removeAllItems();
+
     var io = {singleSelection:true};
     window.openDialog('chrome://zotero/content/selectItemsDialog.xul', '', 'chrome, modal, centerscreen', io);
     var selectedItemID = io.dataOut[0];
+
     selectedItem = Zotero.Items.get(selectedItemID);
     var fieldID;
     document.getElementById('item-select').setAttribute("hidden", "false");
@@ -41,9 +44,14 @@ Zotero_AnyaPls_CustomCitation.updatelist = function(){
     for (fieldID in selectedItem._itemData){
         var name = Zotero.ItemFields.getName(fieldID);
         var val = selectedItem.getField(fieldID);
-        document.getElementById("item-select").appendItem(name, val);
+        document.getElementById("item-select").appendItem(name + " : " + val, val);
     }
 
+    //add each of the items custom field to the list
+    var result = Zotero.AnyaPls.DB.query("SELECT fieldName,fieldValue FROM customField WHERE itemID='" + selectedItemID + "'");
+    for(var i=0; i < result.length; i++) {
+        document.getElementById("item-select").appendItem(result[i].fieldName + " : " + result[i].fieldValue, result[i].fieldValue);
+    }
 };
 Zotero_AnyaPls_CustomCitation.add = function() {
     //var ZoteroPane = Zotero.AnyaPls.getZoteroPane();

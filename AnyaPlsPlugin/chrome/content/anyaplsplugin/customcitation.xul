@@ -31,7 +31,7 @@
                 <button label="Add" oncommand="return Zotero_AnyaPls_CustomCitation.add();"/>
             </hbox>
         </vbox>
-        <textbox id="citation-textbox"/>
+        <textbox id="citation-textbox" multiline="true" flex="2"/>
     </vbox>
 
 </dialog>
