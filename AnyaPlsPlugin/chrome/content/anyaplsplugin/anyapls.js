@@ -64,23 +64,34 @@ Zotero.AnyaPls = {
     },
     
     itemView: function() {
-    	  var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
-        var item = ZoteroPane.getSelectedItems()[0];	
-        //TODO: fix the following code so that it won't display items that have already been displayed.
+        var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
+        var item = ZoteroPane.getSelectedItems()[0];
+        //check if note or attachment
         if ((item != null) && (!item.isNote()) && (!item.isAttachment())) {
+            //get info tab child and gets its last child
             var itemBox = document.getElementById('dynamic-fields');
-				//alert('aaa');
-				var sql = "SELECT * FROM customField WHERE itemID=?"
+            var last_Child = itemBox.lastChild;
+            last_Child = last_Child.childNodes[0];
+                // if addition fields have displayed, exit
+                if (last_Child.getAttribute("fieldname") != "dateModified") {
+                    return;
+                }
+
+                //if last child is modify which means addition field not display
+				var sql = "SELECT * FROM customField WHERE itemID=?";
 				var itemField = this.DB.query(sql, [item.id]);
 				for (var i = 0; i < itemField.length; i++) {
+                    //create label node with addition field name
 					var flabel = document.createElement('label');
 					flabel.className = 'fieldNames';
 					var field = itemField[i].fieldName;
 					flabel.setAttribute('value', field);
+                    //create value node with field's value
 					var vlabel = document.createElement('label');
 					vlabel.className = "fieldValue";
 					var value = itemField[i].fieldValue;
 					vlabel.textContent = value;
+                    //create row and append both field and value node to it
 					var row = document.createElement('row');
 					row.appendChild(flabel);
 					row.appendChild(vlabel);
@@ -88,7 +99,7 @@ Zotero.AnyaPls = {
 				}
             //return true;
         } else {
-        	   return false;	
+        	   return;
         }
         
           	
