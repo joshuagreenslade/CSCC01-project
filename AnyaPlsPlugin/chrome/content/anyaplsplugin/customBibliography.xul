@@ -30,12 +30,11 @@
         </vbox>
         <textbox id="bibliography-textbox" multiline="true" flex="2"/>
         <hbox>
-            <button id="save" label="Save Bibliograpghy as" oncommand="Zotero_AnyaPls_CustomBibliography.save();"/>
-            <button id="load" label="Load Bibliograpghy" oncommand="Zotero_AnyaPls_CustomBibliography.load();"/>
+            <button id="save" label="Save" oncommand="Zotero_AnyaPls_CustomBibliography.save();"/>
+            <button id="load" label="Load" oncommand="Zotero_AnyaPls_CustomBibliography.load();"/>
+            <button id="delete" label="Delete" oncommand="Zotero_AnyaPls_CustomBibliography.delete();"/>
             <button id="fill-in" label="Fill in Bibliography" oncommand="Zotero_AnyaPls_CustomBibliography.fillIn();"/>
         </hbox>
-        <textbox id="name"/>
-
     </vbox>
 
 </dialog>

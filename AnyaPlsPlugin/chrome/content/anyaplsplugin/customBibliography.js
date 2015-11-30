@@ -43,41 +43,27 @@ Zotero_AnyaPls_CustomBibliography.add = function() {
 
 
 Zotero_AnyaPls_CustomBibliography.save = function() {
-    var name = document.getElementById('name').value;
-    var bib = document.getElementById('bibliography-textbox').value;
 
-    //if the user entered an name that has already been saved
-    if(Zotero.AnyaPls.DB.query("SELECT name FROM customBib where name='" + name + "'")) {
-
-        //a window that asks if the user wants to overwrite the old bibliography
-        var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-            .getService(Components.interfaces.nsIPromptService);
-
-        //overwrite the old bibliography if user clicked ok
-        if(promptService.confirm(window, "Overwrite", "Do you want to overwrite " + name + "?"))
-            Zotero.AnyaPls.DB.query("UPDATE customBib SET bib='" + bib + "' WHERE name='" + name + "'");
-
-        //if the user clicked cancel
-        else
-            return;
-    }
-
-    //if name doesnt already have a value associated with it in the database
-    else
-        Zotero.AnyaPls.DB.query("INSERT INTO customBib VALUES ('" + name + "', '" + bib + "')");
-
-    //reset the name text field
-    document.getElementById('name').value = "";
+    //open a window to save the bibliography
+    var win = window.open("chrome://anyaplsplugin/content/saveLoadBib.xul", "", "chrome, centerscreen");
+    win.arguments = ['save', document.getElementById('bibliography-textbox').value];
 };
 
 Zotero_AnyaPls_CustomBibliography.load = function() {
-    var name = document.getElementById('name').value;
-    var result = Zotero.AnyaPls.DB.query("SELECT bib FROM customBib where name='" + name + "'");
 
-    //if a database entry with the given name exists
-    if(result)
-        document.getElementById('bibliography-textbox').value = result[0].bib;
+    //open a window to load a bibliography
+    var win = window.open("chrome://anyaplsplugin/content/saveLoadBib.xul", "", "chrome, centerscreen");
+    win.arguments = ['load', document.getElementById('bibliography-textbox').value];
 };
+
+
+Zotero_AnyaPls_CustomBibliography.delete = function() {
+
+    //open a window to delete a bibliography
+    var win = window.open("chrome://anyaplsplugin/content/saveLoadBib.xul", "", "chrome, centerscreen");
+    win.arguments = ['delete'];
+};
+
 
 Zotero_AnyaPls_CustomBibliography.fillIn = function() {
 
@@ -88,7 +74,7 @@ Zotero_AnyaPls_CustomBibliography.fillIn = function() {
     //parse the string text
     for(var i=0; i < text.length; i++) {
 
-        //if the next 2 elements of text are &( add the value of the field in the brackets
+        //if the next 2 elements of text are '&(' put the rest of the characters into field until ')'
         if((text[i] == "&") && (text[i+1] == "(")) {
             i += 2;
             field = "";
@@ -103,7 +89,7 @@ Zotero_AnyaPls_CustomBibliography.fillIn = function() {
                     return;
             }
 
-            //look for the field in the array of fields and add the corresponding value to the result string, if the field isnt there put (undefined)
+            //look for field in the array of fields and add the corresponding value to the result string, if the field isn't there put (undefined)
             var j=0;
             while((fields.length != j) && (fields[j][0] != field))
                 j++;
