@@ -103,27 +103,14 @@ Zotero.AnyaPls = {
         var checkbox = document.getElementById('custom-field-search-checkbox');
         var searchbar = document.getElementById('zotero-tb-search');
 
-        //if it is in fullscreen dont let the user search custom fields because it crashed the program
-        if(ZoteroPane.isFullScreen()) {
-            return;
-        }
-
-        //save the original ZoteroPane.itemsView._itemGroup (this solved an error)
-        if(!initialized){
-            oldItemGroup = ZoteroPane.itemsView._itemGroup;
-            initialized = true;
-        }
-
         //reset the searchbar and erase the search results
         searchbar.value = '';
         Zotero.AnyaPls.searchCustomFields();
-        ZoteroPane.itemsView._itemGroup = oldItemGroup;
-        ZoteroPane_Local.search();
 
         if(checkbox.hasAttribute('checked')) {
 
             //change the oncommand value of the search box to go to searchCustomFields function, and remove the
-            //onkeypress and oninput fields because they caused errors
+            //onkeypress and oninput fields to disable pressing enter because it will call the original search method
             searchbar.setAttribute('onkeypress', '');
             searchbar.setAttribute('oninput', '');
             searchbar.setAttribute('oncommand', 'Zotero.AnyaPls.searchCustomFields()');
@@ -132,6 +119,8 @@ Zotero.AnyaPls = {
 
             //reset the oncommand value to the original command
             searchbar.setAttribute('oncommand', 'ZoteroPane_Local.search()');
+            searchbar.setAttribute('onkeypress', 'ZoteroPane_Local.handleSearchKeypress(this, event)');
+            searchbar.setAttribute('oninput', 'ZoteroPane_Local.handleSearchInput(this, event)');
         }
     },
 
@@ -143,44 +132,28 @@ Zotero.AnyaPls = {
         //search the custom field table in the database for an entry with the fieldName or fieldValue that contains
         //the value specified in the search bar
         var input = document.getElementById('zotero-tb-search').value;
-
-        //if there is no input just do a normal search
-        if(input == '') {
-            ZoteroPane.itemsView._itemGroup = oldItemGroup;
-            ZoteroPane_Local.search();
-            return;
-        }
-
         var sql_search = "SELECT Distinct itemID FROM customField WHERE fieldName LIKE '%" + input + "%' OR fieldValue LIKE '%" + input + "%'";
         var results = this.DB.query(sql_search);
 
-        //put the ids in a single array
         for(var i=0; i < results.length; i++) {
             ids.push(results[i].itemID);
         }
 
-        var _libraryID;
-        ZoteroPane.itemsView = false;
+        //collapse rows to only show items
+        ZoteroPane.itemsView.collapseAllRows();
 
-        //put the group of selected items into the itemGroup
-        var itemGroup = {
-             ref: {
-                 libraryID: _libraryID
-             },
-             isSearchMode: function() { return true; },
-             getItems: function () { return Zotero.Items.get(ids); },
-             isLibrary: function () { return false; },
-             isCollection: function () { return false; },
-             isSearch: function () { return true; },
-             isShare: function () { return false; },
-             isTrash: function () { return false; }
+        //reset the itemView
+        ZoteroPane.itemsView.refresh();
+        ZoteroPane.itemsView.sort();
+
+        //hide an item if its id is not in the list of ids
+        for(var i=0; i < ZoteroPane.getSortedItems().length; i++) {
+            if(ids.indexOf(ZoteroPane.getSortedItems()[i]._id) == -1) {
+                ZoteroPane.itemsView._hideItem(i);
+                i--;
+            }
         }
 
-        //refresh the itemView
-        if (ZoteroPane.itemsView) {
-         ZoteroPane.itemsView.unregister();
-        }
-        ZoteroPane.itemsView = new Zotero.ItemTreeView(itemGroup, false);
-        document.getElementById('zotero-items-tree').view = ZoteroPane.itemsView;
+        ZoteroPane.itemsView.sort();
     }
 };
