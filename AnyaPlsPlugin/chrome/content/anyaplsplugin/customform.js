@@ -7,7 +7,6 @@ logger = function(msg) {
 };
 Zotero_AnyaPls_CustomForm.init = function () {
     updateDisplay();
-    //updatePossessiveDisplay();
 };
 
 updateDisplay = function() {
@@ -16,7 +15,7 @@ updateDisplay = function() {
     var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
     var item = ZoteroPane.getSelectedItems()[0];
     //queries fields that does not pertain with current item
-    var sql_search = "SELECT DISTINCT fieldName,fieldValue FROM customField WHERE itemID!='" + item.id + "'";
+    var sql_search = "SELECT DISTINCT fieldName FROM customField WHERE itemID!='" + item.id + "'";
     //queries fields that pertains with current item
     var sql_search_with_item = "SELECT DISTINCT fieldName,fieldValue FROM customField WHERE itemID='" + item.id + "'";
 
@@ -59,45 +58,26 @@ updateDisplay = function() {
     }
     else
         for(var i = 0; i < result.length; i++) {
-            displayBox.appendItem(result[i].fieldName + ": " + result[i].fieldValue);
+            displayBox.appendItem(result[i].fieldName);
         }
 };
 
-//function to be used for bottom right box in custom field window
-
-//updatePossessiveDisplay = function() {
-//
-//    var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
-//    var item = ZoteroPane.getSelectedItems()[0];
-//    var displayBox = document.getElementById('display-box');
-//    var sql_search = "SELECT DISTINCT fieldName,fieldValue FROM customField WHERE itemID='" + item.id + "'";
-//    console.log("searching possesive: itemID is: "+ item.id);
-//    //remove all custom fields from the listbox
-//    var total_rows = displayBox.getRowCount();
-//    for(var i = 0; i < total_rows; i++) {
-//        displayBox.removeItemAt(0);
-//    }
-//
-//    //put each custom field into the listbox
-//    //this updates the listbox to show the current list of custom fields
-//    var result = Zotero.AnyaPls.DB.query(sql_search);
-//    for(var i = 0; i < result.length; i++) {
-//        displayBox.appendItem(result[i].fieldName + ": " + result[i].fieldValue);
-//    }
-//};
 
 Zotero_AnyaPls_CustomForm.selectField = function() {
     var displayBox = document.getElementById('field-display-box');
-    //var displayBox2 = document.getElementById('display-box');
 
     //the item selected from the display box
-    var selected_field = displayBox.selectedItem;// || displayBox2.selectedItem;
+    var selected_field = displayBox.selectedItem;
 
     if(selected_field.disabled == false) {
 
         //put the selected field and value into the field and value textboxes
-        document.getElementById("field").value = selected_field.label.split(": ")[0];
-        document.getElementById("value").value = selected_field.label.split(": ")[1];
+        if(selected_field.label.indexOf(":") == -1)
+            document.getElementById("field").value = selected_field.label.split(": ")[0];
+        else {
+            document.getElementById("field").value = selected_field.label.split(": ")[0];
+            document.getElementById("value").value = selected_field.label.split(": ")[1];
+        }
     }
 };
 
