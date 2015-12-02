@@ -94,17 +94,10 @@ Zotero.AnyaPls = {
         } else {
         	   return false;	
         }
-        
-          	
     },
     
     batchEditing: function () {
         window.open("chrome://anyaplsplugin/content/batchediting.xul", "", "chrome, centerscreen");
-    },
-
-
-    customCitation: function() {
-        window.open("chrome://anyaplsplugin/content/customcitation.xul", "", "chrome, centerscreen");
     },
 
 
