@@ -6,7 +6,16 @@ logger = function(msg) {
         .getService(Components.interfaces.nsIConsoleService);
     consoleService.logStringMessage(msg);
 };
+/* BUG LIST:
+  TODO: Fix when delete tag under the tag tab would not update the tag under the display box
+  TODO: Fix when rename tag would not display correct tag name
+  TODO: Fix when delete "undefined tag"
+        -Select an item, delete it once
+        -Press delete again without delete anything would result BatchEditing to crash
+        -Merge, Rename and Delete will not work anymore
 
+
+ */
 Zotero_AnyaPls_BatchEdit.init = function () {
     var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
     var items = ZoteroPane.getSelectedItems();
