@@ -47,6 +47,10 @@ Zotero_AnyaPls_SaveLoadBib.save = function() {
     var name = document.getElementById('name').value;
     var bib = window.arguments[1];
 
+    //if the user didn't enter anything
+    if(name == "")
+        return;
+
      //if the user entered an name that has already been saved
      if(Zotero.AnyaPls.DB.query("SELECT name FROM customBib where name='" + name + "'")) {
 
@@ -65,7 +69,7 @@ Zotero_AnyaPls_SaveLoadBib.save = function() {
 
      //if name doesnt already have a value associated with it in the database
      else
-        Zotero.AnyaPls.DB.query("INSERT INTO customBib VALUES ('" + name + "', '" + bib + "')");
+         Zotero.AnyaPls.DB.query("INSERT INTO customBib VALUES ('" + name + "', '" + bib + "')");
 
     window.close();
 };
@@ -84,6 +88,11 @@ Zotero_AnyaPls_SaveLoadBib.load = function() {
 
 Zotero_AnyaPls_SaveLoadBib.delete = function() {
     var name = document.getElementById('name').value;
+
+    //if the user didn't enter anything
+    if(name == "")
+        return;
+
     Zotero.AnyaPls.DB.query("DELETE FROM customBib where name='" + name + "'");
     window.close();
 };
