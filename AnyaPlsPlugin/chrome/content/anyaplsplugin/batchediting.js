@@ -10,6 +10,7 @@ logger = function(msg) {
 Zotero_AnyaPls_BatchEdit.init = function () {
     var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
     var items = ZoteroPane.getSelectedItems();
+    document.getElementById('instructions').setAttribute('value', 'Close the window to see changes for merge/delete');
 
     //hide the add tag stuff if an item was not selected
     if (items.length) {
@@ -25,6 +26,7 @@ Zotero_AnyaPls_BatchEdit.init = function () {
 updateDisplay = function() {
 
     var displayBox = document.getElementById('tag-display-box');
+    displayBox.clearSelection();
 
     //remove all tags from the listbox
     var total_rows = displayBox.getRowCount();
@@ -64,6 +66,10 @@ Zotero_AnyaPls_BatchEdit.rename = function() {
 
     var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
     var selected_tags = document.getElementById('tag-display-box').selectedItems;
+    var tags = [];
+
+    if(selected_tags == undefined)
+        document.getElementById('tag-display-box').clearSelection();
 
     //if atleast one tag was selected
     if(selected_tags) {
@@ -74,13 +80,12 @@ Zotero_AnyaPls_BatchEdit.rename = function() {
         //add the labels of the selected tags to the message and get the ids of the selected tags
         for(var i = 0; i < selected_tags.length; i++) {
             message = message + selected_tags[i].label + ", ";
-            selected_tags[i] = selected_tags[i].value;
+            tags.push(selected_tags[i].value);
         }
 
         //remove the last comma and add the remaining message
         message = message.substring(0, message.length - 2);
-        message = message + ".\nThe tags will be changed in all associated items.";
-
+        message = message + ".\nThe window will be closed and tags will be changed in all associated items.";
 
         var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
             .getService(Components.interfaces.nsIPromptService);
@@ -92,13 +97,13 @@ Zotero_AnyaPls_BatchEdit.rename = function() {
             return;
         }
 
-        if (selected_tags.length) {
+        if (tags.length) {
             var promises = [];
             Zotero.DB.beginTransaction();
 
             //rename the selected tags
-            for (var i = 0; i < selected_tags.length; i++) {
-                promises.push(Zotero.Tags.rename(selected_tags[i], newName.value));
+            for (var i = 0; i < tags.length; i++) {
+                promises.push(Zotero.Tags.rename(tags[i], newName.value));
             }
 
             Zotero.DB.commitTransaction();
@@ -135,6 +140,10 @@ Zotero_AnyaPls_BatchEdit.delete = function() {
 
     var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
     var selected_tags = document.getElementById('tag-display-box').selectedItems;
+    var tags = [];
+
+    if(selected_tags == undefined)
+        document.getElementById('tag-display-box').clearSelection();
 
     //a message for the confirmation window
     var message = "Are you sure you want to delete the following tags:\n";
@@ -142,7 +151,7 @@ Zotero_AnyaPls_BatchEdit.delete = function() {
     //add the labels of the selected tags to the message and get the ids of the selected tags
     for(var i = 0; i < selected_tags.length; i++) {
         message = message + selected_tags[i].label + ", ";
-        selected_tags[i] = selected_tags[i].value;
+        tags.push(selected_tags[i].value);
     }
 
     //remove the last comma and add the remaining message
@@ -159,18 +168,20 @@ Zotero_AnyaPls_BatchEdit.delete = function() {
         Zotero.DB.beginTransaction();
 
         //delete the tags and update the database
-        if (selected_tags.length) {
-            Zotero.Tags.erase(selected_tags);
-            Zotero.Tags.purge(selected_tags);
+        if (tags.length) {
+            Zotero.Tags.erase(tags);
+            Zotero.Tags.purge(tags);
         }
 
         Zotero.DB.commitTransaction();
 
         // If only a tag color setting, remove that
-        if (!selected_tags.length) {
+        if (!tags.length) {
             Zotero.Tags.setColor(this.libraryID, name, false);
         }
     }
+    else
+        return;
 
     //update the list of tags
     updateDisplay();
