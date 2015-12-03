@@ -114,11 +114,7 @@ Zotero.AnyaPls = {
         window.open("chrome://anyaplsplugin/content/batchediting.xul", "", "chrome, centerscreen");
     },
 
-    /*
-    TODO: Fix bug:
-        - Click on the checkbox and do a search
-        - Now do BatchEditing and items cannot be select anymore
-     */
+
     checkboxClicked: function () {
 
         var checkbox = document.getElementById('custom-field-search-checkbox');
