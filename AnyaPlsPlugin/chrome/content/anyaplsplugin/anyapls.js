@@ -64,31 +64,47 @@ Zotero.AnyaPls = {
     },
     
     itemView: function() {
-    	  var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
-        var item = ZoteroPane.getSelectedItems()[0];	
-        //TODO: fix the following code so that it won't display items that have already been displayed.
+        var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
+        var item = ZoteroPane.getSelectedItems()[0];
+        //check if note or attachment
         if ((item != null) && (!item.isNote()) && (!item.isAttachment())) {
+            //get info tab child and gets its last child
             var itemBox = document.getElementById('dynamic-fields');
-				//alert('aaa');
-				var sql = "SELECT * FROM customField WHERE itemID=?"
-				var itemField = this.DB.query(sql, [item.id]);
-				for (var i = 0; i < itemField.length; i++) {
-					var flabel = document.createElement('label');
-					flabel.className = 'fieldNames';
-					var field = itemField[i].fieldName;
-					flabel.setAttribute('value', field);
-					var vlabel = document.createElement('label');
-					vlabel.className = "fieldValue";
-					var value = itemField[i].fieldValue;
-					vlabel.textContent = value;
-					var row = document.createElement('row');
-					row.appendChild(flabel);
-					row.appendChild(vlabel);
-					itemBox.appendChild(row);
-				}
+            //Remove all the additional field
+            for (var i =0; i<itemBox.childNodes.length; i++) {
+                var last_Child = itemBox.lastChild;
+                // last_Child = last_Child.childNodes[0];
+                // check if  fields is dataModified
+                if (last_Child.childNodes[0].getAttribute("fieldname") != "dateModified") {
+                    itemBox.removeChild(last_Child);
+                }
+            }
+
+
+            var sql = "SELECT * FROM customField WHERE itemID=?";
+            var itemField = this.DB.query(sql, [item.id]);
+
+            for (var i = 0; i < itemField.length; i++) {
+                //create label node with addition field name
+                var field_label = document.createElement('label');
+                field_label.className = 'fieldname';
+                field_label.setAttribute('value',  itemField[i].fieldName);
+
+                //create value node with field's value
+                var value_label = document.createElement('label');
+                value_label.className = "fieldname";
+                value_label.textContent = itemField[i].fieldValue;
+
+                //create row and append both field and value node to it
+                var row = document.createElement('row');
+                row.appendChild(field_label);
+                row.appendChild(value_label);
+
+                itemBox.appendChild(row);
+            }
             //return true;
         } else {
-        	   return false;	
+        	   return;
         }
         
           	
@@ -98,7 +114,7 @@ Zotero.AnyaPls = {
         window.open("chrome://anyaplsplugin/content/batchediting.xul", "", "chrome, centerscreen");
     },
 
-
+    
     customCitation: function() {
         window.open("chrome://anyaplsplugin/content/customcitation.xul", "", "chrome, centerscreen");
     },
