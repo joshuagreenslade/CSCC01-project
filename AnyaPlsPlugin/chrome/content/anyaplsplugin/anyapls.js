@@ -147,7 +147,7 @@ Zotero.AnyaPls = {
         else {
 
             //reset the oncommand value to the original command
-            searchbar.setAttribute('oncommand', 'ZoteroPane_Local.search()');
+            searchbar.setAttribute('oncommand', 'ZoteroPane_Local.search(); Zotero.AnyaPls.itemView();');
             searchbar.setAttribute('onkeypress', 'ZoteroPane_Local.handleSearchKeypress(this, event)');
             searchbar.setAttribute('oninput', 'ZoteroPane_Local.handleSearchInput(this, event)');
         }
@@ -161,6 +161,11 @@ Zotero.AnyaPls = {
         //search the custom field table in the database for an entry with the fieldName or fieldValue that contains
         //the value specified in the search bar
         var input = document.getElementById('zotero-tb-search').value;
+        if(input == '') {
+            ZoteroPane.search();
+            ZoteroPane.itemsView.collapseAllRows();
+        }
+
         var sql_search = "SELECT Distinct itemID FROM customField WHERE fieldName LIKE '%" + input + "%' OR fieldValue LIKE '%" + input + "%'";
         var results = this.DB.query(sql_search);
 
