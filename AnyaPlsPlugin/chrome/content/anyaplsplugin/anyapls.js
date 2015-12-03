@@ -129,10 +129,12 @@ Zotero.AnyaPls = {
 
         var checkbox = document.getElementById('custom-field-search-checkbox');
         var searchbar = document.getElementById('zotero-tb-search');
+        var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
 
         //reset the searchbar and erase the search results
         searchbar.value = '';
-        Zotero.AnyaPls.searchCustomFields();
+        ZoteroPane.search();
+        ZoteroPane.itemsView.collapseAllRows();
 
         if(checkbox.hasAttribute('checked')) {
 
