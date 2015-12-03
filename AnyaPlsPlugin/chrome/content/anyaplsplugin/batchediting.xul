@@ -7,7 +7,7 @@
 
 <dialog
         id="zotero-batch-tag-edit"
-        title="&anyapls.customForm;"
+        title="&anyapls.batchEditTags;"
         persist="screenX screenY width height"
         onload="Zotero_AnyaPls_BatchEdit.init()"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
@@ -33,6 +33,7 @@
         </vbox>
 
         <listbox id="tag-display-box" flex="1" seltype="multiple"/>
+        <label id="instructions"/>
     </vbox>
 
 </dialog>
