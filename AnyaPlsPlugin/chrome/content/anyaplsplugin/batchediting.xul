@@ -31,9 +31,13 @@
                 <button label="Delete" oncommand="return Zotero_AnyaPls_BatchEdit.delete();"/>
             </hbox>
         </vbox>
-
+        <label>
+             Hold the CTRL key and select wanted tags for multi-select.
+        </label>
         <listbox id="tag-display-box" flex="1" seltype="multiple"/>
-        <label id="instructions"/>
+         <label>
+             Close the window to see changes for merge/delete.
+        </label>
     </vbox>
 
 </dialog>

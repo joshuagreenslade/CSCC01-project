@@ -10,7 +10,7 @@ logger = function(msg) {
 Zotero_AnyaPls_BatchEdit.init = function () {
     var ZoteroPane = Zotero.AnyaPls.getZoteroPane();
     var items = ZoteroPane.getSelectedItems();
-    document.getElementById('instructions').setAttribute('value', 'Close the window to see changes for merge/delete');
+//    document.getElementById('instructions').setAttribute('value', );
 
     //hide the add tag stuff if an item was not selected
     if (items.length) {
