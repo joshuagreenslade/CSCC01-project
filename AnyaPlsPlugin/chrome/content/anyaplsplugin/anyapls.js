@@ -142,7 +142,7 @@ Zotero.AnyaPls = {
             //onkeypress and oninput fields to disable pressing enter because it will call the original search method
             searchbar.setAttribute('onkeypress', '');
             searchbar.setAttribute('oninput', '');
-            searchbar.setAttribute('oncommand', 'Zotero.AnyaPls.searchCustomFields()');
+            searchbar.setAttribute('oncommand', 'Zotero.AnyaPls.searchCustomFields(); Zotero.AnyaPls.itemView();');
         }
         else {
 
@@ -161,33 +161,30 @@ Zotero.AnyaPls = {
         //search the custom field table in the database for an entry with the fieldName or fieldValue that contains
         //the value specified in the search bar
         var input = document.getElementById('zotero-tb-search').value;
-        if(input == '') {
-            ZoteroPane.search();
-            ZoteroPane.itemsView.collapseAllRows();
-        }
-
         var sql_search = "SELECT Distinct itemID FROM customField WHERE fieldName LIKE '%" + input + "%' OR fieldValue LIKE '%" + input + "%'";
         var results = this.DB.query(sql_search);
 
-        for(var i=0; i < results.length; i++) {
+        for(var i=0; i < results.length; i++)
             ids.push(results[i].itemID);
-        }
 
-        //collapse rows to only show items
+        //get the results from a normal search
+        ZoteroPane.search();
         ZoteroPane.itemsView.collapseAllRows();
 
-        //reset the itemView
-        ZoteroPane.itemsView.refresh();
-        ZoteroPane.itemsView.sort();
+        //get the ids of items returned by a normal search
+        var sortedItems = ZoteroPane.getSortedItems();
+        for(var i=0; i < sortedItems.length; i++)
+            sortedItems[i] = sortedItems[i]._id;
 
-        //hide an item if its id is not in the list of ids
+        //reset the item view
+        ZoteroPane.itemsView.setFilter('search', '')
+
+        //hide an item if its not in sortedItems or ids
         for(var i=0; i < ZoteroPane.getSortedItems().length; i++) {
-            if(ids.indexOf(ZoteroPane.getSortedItems()[i]._id) == -1) {
+            if ((ids.indexOf(ZoteroPane.getSortedItems()[i]._id) == -1) && (sortedItems.indexOf(ZoteroPane.getSortedItems()[i]._id) == -1)) {
                 ZoteroPane.itemsView._hideItem(i);
                 i--;
             }
         }
-
-        ZoteroPane.itemsView.sort();
     }
 };
